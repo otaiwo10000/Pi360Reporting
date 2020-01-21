@@ -1,0 +1,22 @@
+﻿
+
+.highcharts-title, .highcharts-subtitle,  .highcharts-axis-title {
+     font-family:'Times New Roman', Times, serif; 
+     font-size:small;
+    color:blue;
+}
+
+.highcharts-axis-title {
+    font-family:'Times New Roman', Times, serif; font-size:small;
+    color:blue;
+}
+
+.highcharts-title {
+     font-family:'Times New Roman', Times, serif; font-size:small;
+    color:blue;
+}
+
+.highcharts-subtitle {
+     font-family:'Times New Roman', Times, serif; font-size:small;
+    color:blue;
+}

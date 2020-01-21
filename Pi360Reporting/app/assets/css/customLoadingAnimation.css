@@ -1,0 +1,49 @@
+﻿
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.loader {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader__inner {
+  position: relative;
+  padding: 10px;
+  font-weight: 800;
+  font-size: 5em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background-color: #fff;
+  
+  /*&::before {*/
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 33.33%;
+    height: 100%;
+    background-color: #000;
+    animation: animate 1s linear infinite alternate;
+    filter: contrast(10);
+  /*}*/
+}
+
+.loader__text {
+  color: #fff;
+  /*mix-blend-mode: difference;
+  // filter: blur(2px);*/
+}
+
+@keyframes animate {
+  100% {
+    left: calc(100% - 33.33%);
+  }
+}

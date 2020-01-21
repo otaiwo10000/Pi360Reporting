@@ -1,0 +1,31 @@
+﻿a.menutext {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+    a:focus, a:hover, a.custommenu {
+        color: gold;
+        text-decoration: underline;
+    }
+
+a.custommenu {
+    background-color: transparent;
+}
+
+.mCustomScrollBox {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    max-width: 100%;
+    outline: 0;
+    direction: ltr;
+    background-color: black;
+}
+
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/

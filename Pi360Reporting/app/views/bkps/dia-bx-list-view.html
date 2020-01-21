@@ -1,0 +1,119 @@
+﻿<!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>-->
+
+
+
+<div class="main-content">
+    <div class="widget widget-table">
+        <div class="widget-header">
+            <h3><i class="fa fa-table"></i> {{vm.viewName}}</h3>
+        </div>
+        <div class="widget-content">
+            <div class="alert alert-info fade in" data-ng-show="vm.showInstruction">
+                <button class="close" data-dismiss="alert">&times;</button>
+                <i class="fa fa-info-circle"></i> {{vm.instruction}}
+            </div>
+
+
+            <!--<table id="dbx" class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>IsDeleted</th>
+
+                        <th style="width: 3%;">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="m in vm.mprBSheets">
+                        <td>
+                            {{ m.Name}}
+                        </td>
+                        <td>
+                            {{ m.isDeleted}}
+                        </td>
+
+                        <td>
+                            <a class="btn btn-orange btn-xs" data-ui-sref="mpr-mprbalancesheet-edit({balancesheetId: mprBalanceSheet.BalanceSheetId})">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>-->
+
+
+
+
+            <div>
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="width: 1px;"></td>
+                            <td>
+                                <b>Task</b>
+                            </td>
+                            <td>
+                                <b>Options</b>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="task in tasks">
+
+                            <td>{{task.title}}</td>
+                            <td>{{task.description}}</td>
+                            <td>
+                                <a class="btn" data-toggle="modal" ng-click="vm.beginEdit(task)">Edit</a>
+                                <a class="btn" data-toggle="modal" ng-click="vm.beginEdit2()">Edit2</a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <a class="btn" data-toggle="modal" data-target="#add" ng-click="addTask(task)">Add Task</a>
+            </div>
+
+
+            <div id="edit" class="modal hide fade" tabindex="=1" role="dialog" aria-labelledby="editDialogLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="editDialogLabel">Edit Task</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="inputTask">Task</label>
+                            <div class="controls">
+                                <input type="text" ng-model="selectedTask.title" id="inputTask" placeholder="Task title" style="width: 150px;">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputDescription">Description</label>
+                            <div class="controls">
+                                <input type="text" ng-model="selectedTask.description" id="inputDescription" placeholder="Description" style="width: 300px;">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <label class="checkbox">
+                                    <input ng-model="selectedTask.done" type="checkbox"> Done
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="vm.editTask()" data-dismiss="modal">Update Task</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+            <!-- End Edit Modal -->
+
+
+        </div>
+    </div>
+</div>
+
+

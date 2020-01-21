@@ -1,0 +1,59 @@
+﻿
+
+<button class="btn btn-success btn-xs col-xs-1" style="margin-left:2%;" ng-click="vm.toggleReportPage()">{{vm.toggleText}}</button>
+
+<div class="row" id="report020" style="font-family:'Times New Roman', Times, serif; font-size:small; color:black">
+
+    <div class="column form-group col-sm-offset-4" col-sm-3" style="position:center"> <span style="font-family:'Times New Roman', Times, serif; font-size:small; color:black"><strong>You are on Report View Page</strong></span>  </div>
+
+
+    <div class="column form-group col-sm-12">
+        <form method="get" class="form-horizontal">
+          
+            <div class="form-group col-sm-2" style="margin-left:1%; margin-right:1%;">
+                <label class="control-label"><b>Start Date</b></label>
+                <div class="controls">
+                    <!--<input type="date" ng-model="vm.startdatemodel"  class="form-control" value="YY-MM-DD" />-->
+                    <input type="date" ng-model="vm.startdatemodel" class="form-control" />
+                </div>
+            </div> 
+
+            <div class="form-group col-sm-2" style="margin-right:1%;">
+                <label class="control-label"><b>End Date</b></label>
+                <div class="controls">
+                    <input type="date" ng-model="vm.enddatemodel" class="form-control" />  
+                </div>
+            </div>
+
+			 <div class="form-group col-sm-2" style="margin-right:1%;">
+                <label class="control-label"><b>Channels</b></label>
+                <div class="controls">
+                    <select ng-model="vm.channelmodel" class="form-control" ng-options="c.value as c.name for c in vm.channelList"></select>
+                </div>
+            </div> 
+           
+
+            <div class="form-group col-sm-1">
+                <label class="control-label"> &nbsp </label>
+                <button type="button" class="btn-sm btn btn-primary btn-rounded btn-block" data-ng-click="vm.reportSet020()" id="set020">
+                    Apply
+                </button>
+            </div>
+</form>
+
+    </div>
+</div>
+
+<!--<div class="container">
+    <div class="row">-->
+        <div style="font-family:'Times New Roman', Times, serif; font-size:large; color:black">
+            
+            <form class="form-horizontal" style="height: 100%;">
+                <div style="height:100%; background-color: transparent;">
+                   <iframe src="{{'/App/pages/Viewer020.aspx?id=' + vm.reportId + '&period3=' + vm.periodmodel3 + '&startdate=' + vm.startdatemodel2 + '&enddate=' + vm.enddatemodel2 + '&channel=' + vm.channelmodel2 }}" style="width:99%;height:2600px; overflow-y:hidden; overflow-x:auto"></iframe>
+                </div>
+            </form>
+        </div>
+
+    <!--</div>
+</div>-->

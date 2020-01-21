@@ -1,0 +1,180 @@
+
+
+(function () {
+    "use strict";
+    angular
+        .module("fintrak")
+        .controller("CEO2DashboardController",
+        ['$scope', '$state', 'viewModelHelper', '$modal', 'validator', 'Excel', '$timeout',
+            CEO2DashboardController]);
+
+    function CEO2DashboardController($scope, $state, viewModelHelper, $modal, $modalInstance, validator, Excel, $timeout) {
+        var vm = this;
+        vm.viewModelHelper = viewModelHelper;
+        vm.parentController = $scope.$parent;
+
+        vm.view = 'ceo2dashboard-view';
+        vm.viewName = 'Dashboard';
+
+        vm.viewModelHelper.modelIsValid = true;
+        vm.viewModelHelper.modelErrors = [];
+        vm.barchart = [];
+        vm.piechart = [];
+
+
+        var rootUrl = '';
+
+        vm.ceo2table1 = [
+            { y: '2014', a: 50, b: 90 },
+            { y: '2015', a: 65, b: 75 },
+            { y: '2016', a: 50, b: 50 },
+            { y: '2022', a: 120, b: 85 },
+            { y: '2023', a: 145, b: 85 },
+            { y: '2024', a: 160, b: 95 }
+        ];
+
+        vm.ceo2table2 = [
+            { y: '2014', a: 50, b: 90, c: 10 },
+            { y: '2015', a: 65, b: 75, c: 90 },
+            { y: '2016', a: 50, b: 50, c: 50 },
+            { y: '2022', a: 120, b: 85, c: 70 },
+            { y: '2023', a: 145, b: 85, c: 20 },
+            { y: '2024', a: 160, b: 95, c: 90 }
+        ];
+
+       
+        vm.period = [];
+
+        vm.ceo2_2_raw = [{ name: 'Team A', data: [{ n: 5, period: 'Jan' }, { n: 3, period: 'Feb' }, { n: 4, period: 'Mar' }], stack: 0 },
+            { name: 'Team B', data: [{ n: 2, period: 'Jan' }, { n: 9, period: 'Mar' }, { n: 6, period: 'Mar' }], stack: 1 },
+            { name: 'Team C', data: [{ n: 7, period: 'Jan' }, { n: 5, period: 'Feb' }, { n: 3, period: 'Mar' }], stack: 2 }];
+
+        angular.forEach(vm.ceo2_2_raw, function (value, key) {
+            vm.nANDperiod = value.data;
+
+            angular.forEach(vm.nANDperiod, function (a, b) {
+                //vm.period.push({ period: a.period });
+                if (vm.period.indexOf(a.period) == -1) {  //get unique /distict values of a.period
+                    vm.period.push(a.period);
+                }
+            });
+        });
+
+        vm.ceo2_2 = [];
+        vm.ceo2_2b = [];
+        vm.number = [];
+        angular.forEach(vm.ceo2_2_raw, function (value, key) {
+            angular.forEach(value.data, function (a, b) { vm.number.push(a.n); });
+
+            vm.ceo2_2 = { name: value.name, data: vm.number, stack: value.stack };
+            vm.ceo2_2b.push(vm.ceo2_2);
+            vm.number = [];
+        });
+
+        vm.outputT1 = [];
+        vm.outputD1 = [];
+
+        vm.D1Subcaptions = [];
+        vm.D1ASubcaptions = [];
+        vm.D1BSubcaptions = [];
+
+        vm.D1AAmounts = [];
+
+        vm.D1Data = [];
+        vm.D1Name = [];
+
+        var dFunc = function () {
+            vm.viewModelHelper.apiGet('api/landingpage/landingpagechat', null,
+                function (res) {
+                    vm.outputT1 = res.data;
+                    vm.outputD1 = res;
+                    vm.D1Data = vm.outputT1.data;
+                   // vm.D1SubCaptions = vm.D1Data.SubCaption;
+                    vm.D1Name = vm.outputT1.name;
+
+                    angular.forEach(vm.D1Data, function (a, b) {
+                        vm.D1ASubcaptions.push(a.SubCaption);
+                        vm.D1BSubcaptions.push({SubCaption: a.SubCaption});
+                    });
+
+                    angular.forEach(vm.D1Data, function (a2, b2) {
+                        vm.D1AAmounts.push(a2.Amount);
+                    });
+
+                    totalAccountMixFunc();
+
+                },
+                function (result) {
+                    // toastr.error('Fail to load BalanceSheets data.', 'Fintrak');
+                }, null);
+        }
+
+
+        vm.init = false;
+        vm.showInstruction = false;
+        vm.instruction = '';
+
+       
+        var totalAccountMixFunc = function () {
+            //dFunc();
+
+            Highcharts.chart('totalaccountmix', {
+                chart: {
+                    type: 'column',
+                    //backgroundColor: 'dodgerblue',
+                    options2d: {
+                        enabled: true,
+                        alpha: 10,
+                        beta: 25,
+                        depth: 70
+                    }
+                },
+                title: {
+                    //text: 'Title: 3D chart with null values'
+                    text: 'Total Account Mix'
+                },
+                subtitle: {
+                    //text: 'Notice the difference between a 0 value and a null point'
+                    //text: 'Subtitle here if needed.'
+                },
+                plotOptions: {
+                    column: {
+                        depth: 25
+                    }
+                },
+                xAxis: {
+                    //categories: Highcharts.getOptions().lang.shortMonths,
+                    //categories: ['ACTIVE ACCOUNTS', 'DORMANT ACCOUNTS', 'INACTIVE ACCOUNTS'],
+                    categories: vm.D1ASubcaptions,
+                    labels: {
+                        skew3d: true,
+                        style: {
+                            fontSize: '16px'
+                        }
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Amount'
+                    }
+                },
+                //series: [{
+                //    //name: 'Sales',
+                //    //data: [560720.000000000000, 356525.000000000000, 1659202.000000000000]
+                //}]
+
+                series: [{
+                    //name: 'Sales',
+                    data: vm.D1AAmounts
+                }]
+                
+            });
+        };
+
+
+        
+        dFunc();
+        //totalAccountMixFunc();
+        
+    }
+}());

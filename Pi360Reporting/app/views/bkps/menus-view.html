@@ -1,0 +1,39 @@
+﻿      
+
+<!--<li class="panel">
+
+    <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse20" aria-expanded="false" aria-controls="collapse20" class="collapsed"><i class="ti-folder"></i>Management Performance Report </a>
+
+    <ul id="collapse20" class="list-unstyled collapse"></ul>
+
+</li>-->
+
+<!--<li *ngFor="let n of headerList">
+    <a routerLink="#"><i class="fa fa-bar-chart-o fa-fw"></i> {{n.menulist}}<span class="fa arrow"></span></a>
+    <ul *ngFor="let i of n.reportpath" class="nav nav-second-level">
+
+        <li>
+            <a href="flot.html"> {{i}} </a>
+        </li>
+
+    </ul>
+</li>-->
+
+<!--<ul id="collapse32" class="list-unstyled collapse">
+    <li class="panel">
+        <a role="button" data-toggle="collapse" data-parent="#collapse32" href="#collapse42" aria-expanded="false" aria-controls="collapse42" class="collapsed">Menu level 4.2</a>
+        <ul id="collapse42" class="list-unstyled collapse">
+            <li><a href="#">Menu level 5.1</a></li>
+        </ul>
+</ul>-->
+
+
+
+
+<ul id="collapse32" class="list-unstyled collapse" ng-controller="MenusController2">
+    <li class="panel" ng-repeat="m in menus">
+        <a role="button" data-toggle="collapse" data-parent="#collapse32" href="#collapse42" aria-expanded="false" aria-controls="collapse42" class="collapsed">{{m.MenuList}}</a>
+        <ul id="collapse42" class="list-unstyled collapse" ng-repeat="n in m.subobj">
+            <li><a href="#">{{n.ReportPAth}}</a></li>
+        </ul>
+</ul>

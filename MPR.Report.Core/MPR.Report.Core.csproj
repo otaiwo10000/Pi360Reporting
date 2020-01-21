@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DF98A65C-5B60-4057-B975-D6351E2EBC7D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MPR.Report.Core</RootNamespace>
+    <AssemblyName>MPR.Report.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MPR.Report.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MPR.Report.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataInfo\Dashboard2Info.cs" />
+    <Compile Include="DataInfo\SessionDataInfo.cs" />
+    <Compile Include="DataInfo\DashboardInfo.cs" />
+    <Compile Include="DataInfo\ReportProcedureDataInfo.cs" />
+    <Compile Include="DataInfo\mprFintrakMenu_ObjectList.cs" />
+    <Compile Include="DataInfo\LandingPageInfo.cs" />
+    <Compile Include="DataInfo\TeamStructureInfo.cs" />
+    <Compile Include="DataRepositoryInterfaces\IDashBoard2Repository.cs" />
+    <Compile Include="DataRepositoryInterfaces\IOnBoardingUsersRepository.cs" />
+    <Compile Include="DataRepositoryInterfaces\ISetUpRepository.cs" />
+    <Compile Include="DataRepositoryInterfaces\IDashBoardRepository.cs" />
+    <Compile Include="DataRepositoryInterfaces\ITeamStructureRepository.cs" />
+    <Compile Include="DataRepositoryInterfaces\IMpr_FintrakMenuRepository.cs" />
+    <Compile Include="Entities\BSheet.cs" />
+    <Compile Include="Entities\OnBoardingUsers.cs" />
+    <Compile Include="Entities\DashboardSubCaptionConfiguration.cs" />
+    <Compile Include="Entities\IncomeSetUpDaily.cs" />
+    <Compile Include="Entities\DashboardConfiguration.cs" />
+    <Compile Include="Entities\MPRReportStatus.cs" />
+    <Compile Include="Entities\ReportStatus.cs" />
+    <Compile Include="Entities\TeamDefinition.cs" />
+    <Compile Include="Entities\LandingPageConfiguration.cs" />
+    <Compile Include="Entities\TeamStructureALL.cs" />
+    <Compile Include="Entities\TeamStructureLBIC.cs" />
+    <Compile Include="Entities\TeamStructureABP.cs" />
+    <Compile Include="Entities\TeamStructureWMB.cs" />
+    <Compile Include="Entities\UserMIS.cs" />
+    <Compile Include="Entities\CorUserSetUp.cs" />
+    <Compile Include="Entities\SetUp.cs" />
+    <Compile Include="Entities\TeamStructure.cs" />
+    <Compile Include="Entities\mpr_FintrakMenu.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryInterfaces\IDataRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IIdentifiableEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Enums\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

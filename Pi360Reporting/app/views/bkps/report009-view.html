@@ -1,0 +1,116 @@
+﻿
+
+<button class="btn btn-success btn-xs col-xs-1" style="margin-left:2%;" ng-click="vm.toggleReportPage()">{{vm.toggleText}}</button>
+
+<div class="row" id="report009" style="font-family:'Times New Roman', Times, serif; font-size:small; color:black">
+
+    <div class="column form-group col-sm-offset-4" col-sm-3" style="position:center"> <span style="font-family:'Times New Roman', Times, serif; font-size:small; color:black"><strong>You are on Report View Page</strong></span>  </div>
+    <!--</div>-->
+    <!--<div class="row" style="font-family:'Times New Roman', Times, serif; font-size:large; color:black" id="report001">-->
+
+    <div class="column form-group col-sm-12">
+        <form method="get" class="form-horizontal">
+
+            <div class="form-group col-sm-12">
+                <div class="form-group col-sm-2 ctrlmargin" style="margin-left:1%; margin-right:1%;">
+                    <label class="control-label"><b>Account Number</b></label>
+                    <div class="controls">
+                        <input class="form-control" ng-model="vm.accountnumbermodel" >
+                    </div>
+                </div> <!--<div class="form-group col-sm-1">&nbsp</div>-->
+
+                <div class="form-group col-sm-1" style="margin-right:1%;">
+                    <label class="control-label"><b>Year</b></label>
+                    <div class="controls">
+                        <select ng-model="vm.yearmodel" class="form-control" ng-options="t.value as t.name for t in vm.yearList"></select>
+                        <!--<select ng-model="list_category" class="form-control" ng-options="t.Id as t.Name for t in vm.test"></select>-->
+                    </div>
+                </div> <!--<div class="form-group col-sm-1">&nbsp</div>-->
+
+                <div class="form-group col-sm-2" style="margin-right:1%;">
+                    <label class="control-label"><b>Period</b></label>
+                    <div class="controls">
+                        <select ng-model="vm.periodmodel" class="form-control" ng-options="t.id as t.name for t in vm.periodList"></select>
+                    </div>
+                </div> <!--<div class="form-group col-sm-1">&nbsp</div>-->
+
+                <div class="form-group col-sm-2" style="margin-right:1%;">
+                    <label class="control-label"><b>Direction</b></label>
+                    <div class="controls">
+                        <select ng-model="vm.categorymodel" class="form-control" ng-options="t.value as t.name for t in vm.categoryList"></select>
+                    </div>
+                </div>
+
+                <!--<div class="form-group col-sm-2" style="margin-right:1%;">
+                    <label class="control-label"><b>Direction</b></label>
+                    <div class="controls">
+                        <select ng-model="vm.directionmodel" class="form-control" ng-options="t.value as t.name for t in vm.directionList"></select>
+                    </div>
+                </div>--> <!--<div class="form-group col-sm-1">&nbsp</div>-->
+
+                <div class="form-group col-sm-2" style="margin-right:1%;">
+                    <label class="control-label"><b>State</b></label>
+                    <div class="controls">
+                        <select ng-model="vm.statemodel" class="form-control" ng-options="t.value as t.name for t in vm.stateList"></select>
+                    </div>
+                </div>
+
+                <!--<div class="form-group col-sm-2" style="margin-right:1%;">
+                    <label class="control-label"><b>Product Type</b></label>
+                    <div class="controls">
+                        <select ng-model="vm.producttypemodel" class="form-control" ng-options="t.Caption as t.ProductCode for t in vm.productTypeList"></select>
+                    </div>
+                </div>-->
+
+                <!--<div class="form-group col-sm-2" style="margin-right:1%;">
+                    <label class="control-label"><b>Rank</b></label>
+                    <div class="controls">
+                        <select ng-model="vm.rankingmodel" class="form-control" ng-options="t.value as t.name for t in vm.rankingList"></select>
+                    </div>
+                </div>-->
+
+                <!--<div class="form-group col-sm-1" style="margin-right:1%;">
+                    <label class="control-label"><b>Top</b></label>
+                    <div class="controls">
+                        <input ng-model="vm.topmodel" class="form-control" type="number" />
+                    </div>
+                </div>--> 
+
+                <div class="form-group col-sm-1" style="margin-right:1%;">
+                    <label class="control-label"><b>Currency</b></label>
+                    <div class="controls">
+                        <select ng-model="vm.currencymodel" class="form-control" ng-options="t.id as t.name for t in vm.currencyList"></select>
+                    </div>
+                </div> 
+
+                <div class="form-group col-sm-1">
+                    <label class="control-label"> &nbsp </label>
+                    <input type="button" class="btn-sm btn btn-primary btn-rounded btn-block" ng-click="vm.reportSet009()" id="set009" value="Apply">
+                </div>
+            </div>
+            <!--<div class="form-group col-sm-12">
+                <div class="col-xs-offset-10 col-xs-1">
+                    <input type="button" class="btn-lg btn btn-primary btn-rounded btn-block" ng-click="vm.reportSet009()" id="set009" value="Apply">
+                </div>
+            </div>-->
+        </form>
+
+    </div>
+</div>
+
+<!--<div class="container">
+    <div class="row">-->
+<div>
+    <form class="form-horizontal" style="height: 100%;">
+        <div style="height:100%; background-color: transparent;">
+             <!--<iframe src="{{'App/pages/Viewer009.aspx?id=' + vm.reportId + '&accountnumber=' + vm.accountnumbermodel2 + '&category=' + vm.categorymodel2 + '&direction=' + vm.directionmodel2 + '&path=' + vm.pathmodel2 + '&period=' + vm.periodmodel2 + '&producttype=' + vm.producttypemodel2 + '&ranking=' + vm.rankingmodel2  + '&state=' + vm.statemodel2 + '&top=' + vm.topmodel2 + '&type=' + vm.typemodel2 + '&year=' + vm.yearmodel2 }}" style="width:100%;height:600px"></iframe>-->
+            <!--<iframe src="{{'App/pages/Viewer009.aspx?id=' + vm.reportId + '&accountnumber=' + vm.accountnumbermodel2 + '&category=' + vm.categorymodel2 + '&period=' + vm.periodmodel2 + '&year=' + vm.yearmodel2 }}" style="width:100%;height:600px"></iframe>-->
+            <!--<iframe src="{{'App/pages/Viewer009.aspx?id=' + vm.reportId + '&accountnumber=' + vm.accountnumbermodel2 + '&category=' + vm.categorymodel2 + '&path=' + vm.pathmodel2 + '&period=' + vm.periodmodel2 + &state=' + vm.statemodel2 + '&currency=' + vm.currencymodel2 + '&year=' + vm.yearmodel2 }}" style="width:100%;height:600px"></iframe>-->
+            <iframe src="{{'/App/pages/Viewer009.aspx?id=' + vm.reportId + '&period3=' + vm.periodmodel3 + '&accountnumber=' + vm.accountnumbermodel2 + '&category=' + vm.categorymodel2 + '&path=' + vm.pathmodel2 + '&period=' + vm.periodmodel2 + '&state=' + vm.statemodel2 + '&currency=' + vm.currencymodel2 + '&year=' + vm.yearmodel2 }}" style="width:100%;height:2600px; overflow-y:hidden; overflow-x:auto"></iframe>
+
+        </div>
+    </form>
+</div>
+
+<!--</div>
+</div>-->

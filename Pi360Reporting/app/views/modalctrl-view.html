@@ -1,0 +1,74 @@
+﻿
+
+<div class="form-group col-sm-12 col-xs-9" style="background-image:radial-gradient(white, #ddd, white); padding-left:0px; -webkit-border-radius: 20px; background-color:aliceblue; position:center; height:320px; font-family:'Times New Roman', Times, serif; font-size:small; color:black;">
+
+
+    <div class="row">
+        <br />
+        <div class="form-group col-sm-12 col-xs-12" style="padding-left:4%;">
+            <!--<div class="alert alert-info col-sm-8 col-xs-12" style="background-color:#ddd;">
+                Select team definition in the drop down below:
+            </div>-->
+            <label class="col-sm-8 col-xs-12" style="height:20px; color:black; padding-top:3%; font-size:small;">
+                Select team definition in the drop down below:
+            </label>
+            <div class="form-group col-sm-4 col-xs-12">
+                <label class="control-label">Year</label>
+                <select ng-model="vm.selectedyear" class="form-control input-sm" ng-options="y.value as y.name for y in vm.year"></select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm-12 col-xs-12">
+            <div class="form-group col-sm-4 col-xs-12">
+                <label class="control-label">Total Bank</label>
+                <select ng-model="t0" class="form-control input-sm" ng-options="t0 as t0.Name for t0 in vm.TotalbankList" ng-change="vm.tsOnSelectFunc(t0.Code, '0', t0.Name)"></select>                         
+            </div>
+            <div class="form-group col-sm-4 col-xs-12">
+                <label class="control-label">Directorate</label>
+                 <select ng-model="t5" class="form-control input-sm" ng-options="t5 as t5.Name for t5 in vm.DirectorateList" ng-change="vm.tsOnSelectFunc(t5.Code, '5', t5.Name)"></select>
+            </div>
+            <div class="form-group col-sm-4 col-xs-12">
+                <label class="control-label">Region</label>
+                <select ng-model="t4" class="form-control input-sm" ng-options="t4 as t4.Name for t4 in vm.RegionList" ng-change="vm.tsOnSelectFunc(t4.Code, '4', t4.Name)"></select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm-12 col-xs-12">
+            <div class="form-group col-sm-4 col-xs-12">
+                <label class="control-label">Division</label>
+                <select ng-model="t6" class="form-control input-sm" ng-options="t6 as t6.Name for t6 in vm.DivisionList" ng-change="vm.tsOnSelectFunc(t6.Code, '6', t6.Name)"></select>
+            </div>
+            <div class="form-group col-sm-4 col-xs-12">
+                <label class="control-label">Branch</label>
+                <select ng-model="t2" class="form-control input-sm" ng-options="t2 as t2.Name for t2 in vm.BranchList" ng-change="vm.tsOnSelectFunc(t2.Code, '2', t2.Name)"></select>
+            </div>
+            <div class="form-group col-sm-4 col-xs-12">
+                <label class="control-label">AccountOfficer</label>
+                <select ng-model="t1" class="form-control input-sm" ng-options="t1 as t1.Name for t1 in vm.AccountOfficerList" ng-change="vm.tsOnSelectFunc(t1.Code, '1', t1.Name)"></select>
+            </div>
+        </div>
+     </div>
+
+       
+        <div class="row">
+            <div class="form-group col-sm-12 col-xs-12">
+                <!--<div class="form-group col-sm-offset-4 col-sm-4 col-xs-offset-3 col-xs-6" style="padding-top:5%;">-->
+                <div class="form-group col-sm-offset-4 col-sm-4 col-xs-offset-3 col-xs-6"">
+
+                    <button class="btn btn-primary btn-xs col-sm-4" ng-click="vm.tsOnPageLoadFunc()">Refresh</button>
+                    <button class="btn btn-warning btn-xs col-sm-4" ng-click="vm.ok()">Close</button>
+                    <button class="btn btn-success btn-xs col-sm-4" ng-click="finallevelmenuFunc()">Apply</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+   

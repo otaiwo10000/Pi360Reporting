@@ -1,0 +1,249 @@
+﻿@{
+    //ViewBag.Title = "Account Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="form-group row">
+    <div class="col-sm-8">
+
+    </div>
+
+    <div class="form-group col-sm-4">
+
+        <strong><label class="col-sm-12" style="color: blue; font-family:'Times New Roman', Times, serif; ">OnBoarding User</label></strong>
+        <br /> <br />
+        <strong><label id="statusid" class="col-sm-12" style="color: red; font-family:'Times New Roman', Times, serif; min-height:40px;"></label></strong>
+
+        <form method="get" class="form-horizontal formClass1">
+
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12">
+                    <input type="text" placeholder="UserName" class="form-control" id="username">
+                </div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12">
+                    <input type="email" placeholder="Email" class="form-control" id="email">
+                </div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12">
+                    <input type="text" placeholder="First Name" class="form-control" id="fname">
+                </div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12">
+                    <input type="text" placeholder="Last Name" class="form-control" id="lname">
+                </div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12">
+                    <input type="text" placeholder="Staff Id" class="form-control" id="staffid">
+                </div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12">
+                    <select class="form-control" id="teamdef" name="teamdef"></select>
+                    @*<label  for="teamdef">Tags: </label>*@
+                    @*<input class="form-control" id="teamdef" name="teamdef" />*@
+                </div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12">
+                    <input type="text" placeholder="MIS Code" class="form-control" id="miscode">
+                </div>
+            </div>
+
+
+
+
+            <br />
+            <div class="form-group col-sm-10">
+                <div class="col-sm-12">
+                    <button type="button" class="btn-lg btn btn-primary btn-rounded btn-block" id="signup">SignUp</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @*<link href="~/Content/Site.css" rel="stylesheet" />*@
+    <link href="~/Content/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Content/plugins/jquery-ui/jquery-ui-1.8.24.js"></script>
+
+    <script>
+        $(function () {
+
+            var $username = $('#username');
+            var $email = $('#email');
+            var $staffid = $('#staffid');
+            var $fname = $('#fname');
+            var $lname = $('#lname');
+            var $teamdef = $('#teamdef');
+            var $miscode = $('#miscode');
+
+            var $statusid = $('#statusid')
+            
+
+
+
+             $.ajax({
+                url: '@Url.Action("teamDefinitionBind", "OnBoardingUsers")',
+                type: "GET",
+                dataType: "json",
+
+                success: function (datacountryBind) {
+                  
+                    //var w = "";
+                    //$("#teamdef").each(function () {
+                    //        w += "<option value=" + $(this).value + ">" + $(this).text + "</option>";
+                    //    });
+                    //$('#ch_user1').html(div_data);
+
+                    //$("#teamdef").append($("<option />").val("").text("--select--"));
+                    $teamdef.append($("<option />").val("").text("--select--"));
+                    $.each(datacountryBind, function () {
+                        //$("#teamdef").append($("<option />").val(this.Code).text(this.Name));
+                        $teamdef.append($("<option />").val(this.Code).text(this.Name));
+                    });
+                } //end of success
+            });  //end of 1st ajax
+
+
+                $("#miscode").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: '@Url.Action("misBind", "OnBoardingUsers")',
+                            //type: "POST",
+                            dataType: "json",
+                            //data: { search: $("#miscode").val() },
+                            data: {
+                                code: $('#teamdef').val(),
+                                search: $('#miscode').val()},
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Name,
+                                value: item.Code
+                            };
+                        })); //end of response
+                    } //end of success
+                }); //end of ajax
+            }, //end of source
+                    minLength: 4,
+            delay: 600,    //in milliseconds
+            messages: {
+                noResults: "",
+                results: ""
+                        }
+        }); //end of autocomplete
+
+
+
+            $('body').keypress(function (e) {
+                if (event.keyCode === 13) { //for key up use 38
+                    $('#signup').trigger('click');
+                }
+            });
+
+            //$('body').keypress(function (ev) {
+            //    if (ev.which === 13)
+            //        $('#login').click();
+            //});
+
+
+
+            $('#signup').on('click', function () {
+
+                if ($username.val() === '' || $username.val() === null) {
+                    $('#statusid').text("Username cannot be empty");
+                }
+
+                else if ($email.val() === '' || $email.val() === null) {
+                    $('#statusid').text("email cannot be empty");
+                }
+
+                else if ($fname.val() === '' || $fname.val() === null) {
+                    $('#statusid').text("First Name cannot be empty");
+                }
+
+                else if ($lname.val() === '' || $lname.val() === null) {
+                    $('#statusid').text("Last Name cannot be empty");
+                }
+
+                else if ($staffid.val() === '' || $staffid.val() === null) {
+                    $('#statusid').text("Staff Id cannot be empty");
+                }
+              
+                else if ($teamdef.val() === '' || $teamdef.val() === null) {
+                    $('#statusid').text("Team Definition Name cannot be empty");
+                }
+
+                else if ($miscode.val() === '' || $miscode.val() === null) {
+                    $('#statusid').text("MIS Code cannot be empty");
+                }
+               
+                else {
+                    var data = {
+                        username: $username.val(),
+                        email: $email.val(),
+                        staffid: $staffid.val(),
+                        firstname: $fname.val(),
+                        lastname: $lname.val(),
+                        teamdefinitioncode: $teamdef.val(),
+                        miscode: $miscode.val(),                        
+                    };
+
+                    $.ajax({
+                        //url: '@Url.Action("SignUp", "Account")',
+                        url: '@Url.Action("OnBoardingUserAdd", "OnBoardingUsers")',
+                        type: "POST",
+                        dataType: "json",
+                        data: data,
+                        // contentType: 'application/json;',
+                        // THIS MUST BE DONE FOR FILE UPLOADING
+                        //contentType: false,
+                        //processData: false,
+
+                        success: function (result) {
+                            if (result.v === "success") {
+                                //window.location.href = result.redirectUrl;
+
+                                $username.val('');
+                                $email.val('');
+                                $staffid.val('');
+                                $fname.val('');
+                                $lname.val('');
+                                $teamdef.val('');
+                                $miscode.val('');
+
+                                $('#statusid').text("You have successfully sent your request for approval");
+                            }
+                          
+                            else   {
+                                $('#statusid').text("Something went wrong. Try again or contact system admin.");
+                            }
+                        },
+
+                        //error: function() {
+                        //    alert('error saving jQueryTest');
+                        //error: function (er)
+                        //    alert(er);
+                        //}
+                    });  // POST ajax ends
+                };
+            });
+
+        });
+    </script>
+}

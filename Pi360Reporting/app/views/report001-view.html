@@ -1,0 +1,111 @@
+﻿
+
+<button class="btn btn-success btn-xs col-xs-1" style="margin-left:2%;" ng-click="vm.toggleReportPage()">{{vm.toggleText}}</button>
+
+<div class="row" id="report001" style="font-family:'Times New Roman', Times, serif; font-size:small; color:black">
+
+    <div class="column form-group col-sm-offset-4" col-sm-3" style="position:center"> <span style="font-family:'Times New Roman', Times, serif; font-size:small; color:black"><strong>You are on Report View Page</strong></span>  </div>
+
+
+    <div class="column form-group col-sm-12">
+        <form method="get" class="form-horizontal">
+            <!--<div class="form-group col-xs-2">
+                <label><b>Path</b></label>
+                    <input type="text" placeholder="Path" class="form-control" id="pathid">
+            </div>
+            <div class="form-group col-sm-1">&nbsp</div>
+            <div class="form-group col-xs-2">
+                <label><b>Type</b></label>
+                <input type="text" placeholder="Type" class="form-control" id="typeid">
+            </div>
+            <div class="form-group col-sm-1">&nbsp</div>
+            <div class="form-group col-xs-2">
+                <label><b>Currency</b></label>
+                <input type="text" placeholder="Currency" class="form-control" id="currencyid">
+            </div>-->
+
+            <div class="form-group col-sm-2" style="margin-left:1%; margin-right:1%;">
+                <label class="control-label"><b>Year</b></label>
+                <div class="controls">
+                    <!--<select ng-model="vm.yearmodel" class="form-control" ng-options="t as t for t in vm.yearList" value="t"></select>-->
+                    <select ng-model="vm.yearmodel" class="form-control" ng-options="t.value as t.name for t in vm.yearList"></select>
+                    <!--<select ng-model="list_category" class="form-control" ng-options="t.Id as t.Name for t in vm.test"></select>-->
+                </div>
+            </div>
+
+            <div class="form-group col-sm-2" style="margin-right:1%;" ng-show="vm.displaysingleSelectDD">
+                <label class="control-label"><b>Period</b></label>
+                <div class="controls">
+                    <select ng-model="vm.periodmodel" class="form-control" ng-options="t.id as t.name for t in vm.periodList"></select>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-4" style="margin-right:1%; max-height:1px;" ng-show="vm.displaymultiSelectDD">
+                <label class="control-label">Period</label>
+                <div class="controls">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div isteven-multi-select
+                                 max-labels="2"
+                                 input-model="vm.periodList"
+                                 output-model="selectedItems"
+                                 button-label="name"
+                                 item-label="name"
+                                 on-close="getSelectItems(selectedItems)"
+                                 tick-property="ticked">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-2" style="margin-right:1%;" hidden>
+                <label class="control-label"><b>Scorecard Type</b></label>
+                <div class="controls">
+                    <select ng-model="vm.scorecardtypemodel" class="form-control" ng-options="t.id as t.name for t in vm.scorecardtypeList"></select>
+                </div>
+            </div>
+
+            <!--<div class="form-group col-sm-2" style="margin-right:1%;">
+                <label class="control-label"><b>Test</b></label>
+                <div class="controls">
+                    <select ng-model="t" class="form-control" ng-options="t as t.name for t in vm.Test" ></select>
+                </div>
+            </div>-->
+            <!--{{t.id}} {{t.name}}-->
+
+            <div class="form-group col-sm-1">
+                <label class="control-label"> &nbsp </label>
+                <button type="button" class="btn-sm btn btn-primary btn-rounded btn-block" data-ng-click="vm.reportSet001()" id="set001">
+                    Apply
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<!--<div class="container">
+    <div class="row">-->
+<div style="font-family:'Times New Roman', Times, serif; font-size:large; color:black; display:none" id="r001" >
+
+    <div id="loadImg"><div><img src="loading.gif" /></div></div>
+
+    <form class="form-horizontal" style="height: 100%;">
+        <div style="height:100%; background-color: transparent;">
+            <!--<iframe src="{{'http://localhost:43056/App/pages/Viewer001.aspx?id=' + reportId | trustAsResourceUrl}}" style="width:100%;height:600px"></iframe>-->
+            <!--<iframe src="{{'http://localhost:43056/App/pages/Viewer.aspx?id=' + vm.reportId }}" style="width:100%;height:600px"></iframe>-->
+            <!--<iframe src="{{'http://localhost:43056/App/pages/Viewer.aspx?id=' + vm.reportId + '&year=' + vm.yearmodel2 + '&period=' + vm.periodmodel2 + '&currency=' + vm.currencymodel2 }}" style="width:100%;height:600px"></iframe>-->
+            <!--<iframe src="{{'/App/webforms/pages/Viewer001a.aspx?id=' + vm.reportId + '&period3=' + vm.periodmodel3 + '&path=' + vm.pathmodel2 + '&period=' + vm.periodmodel2 + '&scorecardtype=' + vm.scorecardtypemodel2 + '&segment=' + vm.segmentmodel2 + '&year=' + vm.yearmodel2 }}" style="width:280%;height:2600px; overflow-y:hidden; overflow-x:auto" name=iframe onload="document.getElementById('loadImg').style.display='none';"></iframe>-->
+            <iframe src="{{'/App/pages/Viewer001.aspx?id=' + vm.reportId + '&period3=' + vm.periodmodel3 + '&path=' + vm.pathmodel2 + '&period=' + vm.periodmodel2 + '&scorecardtype=' + vm.scorecardtypemodel2 + '&segment=' + vm.segmentmodel2 + '&year=' + vm.yearmodel2 }}" style="width:280%;height:2600px; overflow-y:hidden; overflow-x:auto" name=iframe onload="document.getElementById('loadImg').style.display='none';"></iframe>
+
+        </div>
+    </form>
+</div>
+
+
+
+
+
+<!--</div>
+</div>-->

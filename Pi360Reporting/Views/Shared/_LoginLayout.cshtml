@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
+<!--[if !(IE)]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+@*<head>
+    <title>Login | Fintrak Enterprise</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Fintrak Enterprise">
+    <meta name="author" content="The Developers">
+    <!-- CSS -->
+    <link href="~/app/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/app/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/app/assets/css/main.css" rel="stylesheet" type="text/css">
+    <link href="~/app/assets/css/revamp.css" rel="stylesheet" />
+    <!--[if lte IE 9]>
+        <link href="assets/css/main-ie.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/main-ie-part2.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/kingadmin-favicon144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/kingadmin-favicon114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/kingadmin-favicon72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/kingadmin-favicon57x57.png">
+    <link rel="shortcut icon" href="../app/assets/ico/favicon.png">
+</head>*@
+
+<head>
+    
+    <title>Pi360 Reporting App - Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Fintrak Enterprise">
+    <meta name="author" content="The Developers">
+
+    <!-- CSS -->
+    <link href="~/app/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/app/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    @*<link href="~/app/assets/css/main.css" rel="stylesheet" type="text/css">*@
+    <link href="~/app/assets/css/revamp.css" rel="stylesheet" />
+    <!--[if lte IE 9]>
+        <link href="assets/css/main-ie.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/main-ie-part2.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    @*<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/kingadmin-favicon144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/kingadmin-favicon114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/kingadmin-favicon72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/kingadmin-favicon57x57.png">
+    <link rel="shortcut icon" href="../app/assets/ico/favicon.png">*@
+
+    <!-- PACE-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/PACE/themes/blue/pace-theme-flash.css">
+
+    <script type="text/javascript" src="~/Content/plugins/PACE/pace.min.js"></script>
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Fonts-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/themify-icons/themify-icons.css">
+    <!-- Primary Style-->
+    <link rel="stylesheet" type="text/css" href="~/Content/build/css/first-layout.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+
+@*<body data-ng-app="fintrak.extra">*@ 
+    @*<div class="rv_loginbg">
+        @RenderBody()
+    </div>*@
+    @*<footer class="footer">PI360 v2 &copy; 2014-2015 Powered by FinTrak Software</footer>*@
+    <!-- Javascript -->
+
+    @*<script type="text/javascript">
+    window.Fintrak = {};
+    (function (se) {
+        var rootPath;
+        se.rootPath = rootPath;
+    }(window.Fintrak));
+    Fintrak.rootPath = '@Url.Content("~")';
+    </script>
+
+    <script src="~/app/assets/js/jquery/jquery-2.1.0.min.js"></script>
+    <script src="~/app/libs/angular.js"></script>
+    <script src="~/app/libs/angular-resource.js"></script>
+    <script src="~/app/libs/angular-route.js"></script>
+    <script src="~/app/assets/js/bootstrap/bootstrap.js"></script>
+    <script src="~/app/assets/js/plugins/modernizr/modernizr.js"></script>
+
+    <script src="~/app/controllers/fintrak-extra.js"></script>*@
+
+
+
+<body>
+  
+    @RenderBody()
+
+    <footer class="footer" style="position:fixed; text-align: center; color:white; bottom:0; width:100%">PI360 Reporting Application &copy; 2018 Powered by FinTrak Software</footer>
+
+    <!-- jQuery-->
+    @*<script type="text/javascript" src="~/Content/plugins/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/app/assets/js/jquery/jquery-2.1.0.min.js"></script>
+    <!-- Bootstrap JavaScript-->
+    <script type="text/javascript" src="~/Content/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Custom JS-->
+    <script type="text/javascript" src="~/Content/build/js/first-layout/extra-demo.js"></script>
+
+
+    @*<script src="~/app/assets/js/jquery/jquery-2.1.0.min.js"></script>   
+    <script src="~/app/assets/js/bootstrap/bootstrap.js"></script>
+    <script src="~/app/assets/js/plugins/modernizr/modernizr.js"></script>*@
+    
+    @RenderSection("scripts", required: false)
+</body>
+
+@*</body>*@
+</html>

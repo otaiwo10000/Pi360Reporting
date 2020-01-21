@@ -1,0 +1,792 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="fintrak" lang="en">
+<head>
+    @*<base href="/Index#/">*@
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title Pi360 Reporting</title>
+
+    @*@Styles.Render("~/Content/css")*@
+
+    <link href="~/app/assets/js/treegrid/treeGrid.css" rel="stylesheet" />
+    <link href="~/app/assets/js/angular-moment-picker/angular-moment-picker.css" rel="stylesheet" />
+    <link href="~/app/assets/js/angular-datatable/angular-datatables.min.css" rel="stylesheet" />
+    <link href="~/app/assets/js/ngTable/ng-table.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/app/assets/js/crdate/datePicker.css">
+
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/app/assets/ico/kingadmin-favicon144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/app/assets/ico/kingadmin-favicon114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/app/assets/ico/kingadmin-favicon72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="~/app/assets/ico/kingadmin-favicon57x57.png">
+    <link rel="shortcut icon" href="~/app/assets/ico/favicon.png">
+
+    <link href="~/app/angular-multi-select-master/doc/css/isteven-multi-select.css" rel="stylesheet" />
+    <link href="~/Content/plugins/bootstrap/dist/css/customcss.css" rel="stylesheet" />
+
+    <!-- PACE-->
+    <link href="~/Content/plugins/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/PACE/themes/blue/pace-theme-flash.css">
+
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Fonts-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/themify-icons/themify-icons.css">
+    <!-- Malihu Scrollbar-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css">
+    <!-- Animo.js-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/animo.js/animate-animo.min.css">
+    <!-- Bootstrap Progressbar-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css">
+    <!-- Toastr-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/toastr/toastr.min.css">
+    <!-- SpinKit-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/SpinKit/css/spinners/7-three-bounce.css">
+    <!-- Jvector Map-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/jvectormap/jquery-jvectormap-2.0.3.css">
+    <!-- Morris Chart-->
+    @*<link rel="stylesheet" type="text/css" href="~/Content/plugins/morris.js/morris.css">*@
+    <!-- DataTables-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/datatables.net-colreorder-bs/css/colReorder.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.min.css">
+    <!-- Weather Icons -->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/weather-icons/css/weather-icons-wind.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/weather-icons/css/weather-icons.min.css">
+    <!-- FullCalendar-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/fullcalendar/dist/fullcalendar.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/fullcalendar/dist/fullcalendar.print.css" media="print">
+    <!--jQuery MiniColors -->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/jquery-minicolors/jquery.minicolors.css">
+    <!-- Bootstrap Date Range Picker-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- Primary Style -->
+    <link rel="stylesheet" type="text/css" href="~/Content/build/css/first-layout.css" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+        <![endif]-->
+    <!-- MetisMenu CSS -->
+    <link href="~/Content/vendor/metisMenu/metisMenu.min.css" type="text/css">
+    <!-- Morris Charts CSS -->
+    <link href="~/Content/vendor/morrisjs/morris.css" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="~/Content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+
+    <base href="/Index#/">
+
+</head>
+<body data-sidebar-color="sidebar-light" class="sidebar-light" ng-controller="AppController">
+    <!-- Header start-->
+    <header>
+        <div class="search-bar closed">
+            <form>
+                <div class="input-group input-group-lg">
+                    <input type="text" placeholder="Search for..." class="form-control"><span class="input-group-btn">
+                        <button type="button" class="btn btn-default search-bar-toggle"><i class="ti-close"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <a href="#" class="brand pull-left">
+            <img align="left" src="~/Content/images/logo/keystone_1.png" width="120" height="65" alt="">
+        </a>
+
+        <a href="javascript:;" role="button" class="hamburger-menu pull-left"><span></span></a>
+
+        <a href="#" class="brand pull-right" align="left">
+            <img src="~/Content/images/logo/21.jpg" width="100" height="65" alt="" /><span> <font size="3">PI360</font></span>
+        </a>
+
+
+        <ul class="notification-bar list-inline pull-right">
+            <li class="visible-xs"><a href="javascript:;" role="button" class="header-icon search-bar-toggle"><i class="ti-search"></i></a></li>
+            <li class="visible-lg"><a href="javascript:;" role="button" class="header-icon fullscreen-toggle"><i class="ti-fullscreen"></i></a></li>
+
+            <li><a href="javascript:;" role="button" class="right-sidebar-toggle bubble header-icon"><i class="ti-layout-sidebar-right"></i><span class="dot bg-danger"></span></a></li>
+            <li><a href="login.html" role="button" class="header-icon"><i class="ti-power-off"></i></a></li>
+        </ul>
+    </header>
+    <!-- Header end-->
+    <div class="main-container">
+        <!-- Main Sidebar start-->
+        <aside data-mcs-theme="minimal-dark" style="background-image: url(../../Content/build/images/backgrounds/11.jpg)" class="main-sidebar closed mCustomScrollbar">
+            <div class="user">
+                <div id="esp-user-profile" data-percent="65" style="height: 130px; width: 130px; line-height: 100px; padding: 15px;" class="easy-pie-chart"><img src="~/Content/build/images/users/04.jpg" alt="" class="avatar img-circle"><span class="status bg-success"></span></div>
+                <h4 class="fs-16 text-muted mt-15 mb-5 fw-300">Matthew Gonzalez</h4>
+                <p class="fs-13 mb-0 text-muted">Designer</p>
+            </div>
+            <ul class="list-unstyled navigation mb-0">
+                <li class="sidebar-header pt-0">Main</li>
+                <li><a href="index.html" class="active bubble"><i class="ti-home"></i> Dashboard<span class="badge bg-danger">3</span></a></li>
+
+
+                <li class="sidebar-header">Menu Levels</li>
+                <li class="panel">
+                    <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse20" aria-expanded="false" aria-controls="collapse20" class="collapsed"><i class="ti-folder"></i> Menu levels</a>
+                    <ul id="collapse20" class="list-unstyled collapse">
+                        <li><a href="#">Menu level 2.1</a></li>
+                        <li class="panel">
+                            <a role="button" data-toggle="collapse" data-parent="#collapse20" href="#collapse22" aria-expanded="false" aria-controls="collapse22" class="collapsed">Menu level 2.2</a>
+                            <ul id="collapse22" class="list-unstyled collapse">
+                                <li><a href="#">Menu level 3.1</a></li>
+                                <li class="panel">
+                                    <a role="button" data-toggle="collapse" data-parent="#collapse22" href="#collapse32" aria-expanded="false" aria-controls="collapse32" class="collapsed">Menu level 3.2</a>
+                                    <ul id="collapse32" class="list-unstyled collapse">
+                                        <li><a href="#">Menu level 4.1</a></li>
+                                        <li class="panel">
+                                            <a role="button" data-toggle="collapse" data-parent="#collapse32" href="#collapse42" aria-expanded="false" aria-controls="collapse42" class="collapsed">Menu level 4.2</a>
+                                            <ul id="collapse42" class="list-unstyled collapse">
+                                                <li><a href="#">Menu level 5.1</a></li>
+                                                <li><a href="#">Menu level 5.2</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="sidebar-header">Server Status</div>
+            <ul class="list-unstyled pl-25 pr-25">
+                <li class="mb-20">
+                    <div class="block clearfix mb-10"><span class="pull-left fs-12 text-muted">CPU Used</span><span class="pull-right label label-outline label-warning">65%</span></div>
+                    <div class="progress progress-xs mb-0">
+                        <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-warning"></div>
+                    </div>
+                </li>
+                <li class="mb-20">
+                    <div class="block clearfix mb-10"><span class="pull-left fs-12 text-muted">Bandwidth</span><span class="pull-right label label-outline label-danger">80%</span></div>
+                    <div class="progress progress-xs mb-0">
+                        <div role="progressbar" data-transitiongoal="80" class="progress-bar progress-bar-danger"></div>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+        <!-- Main Sidebar end-->
+        <!-- Right Sidebar start-->
+        <!-- RenderBody Starts -->
+
+        @RenderBody()
+
+        <!-- RenderBody Ends -->
+
+
+
+
+    </div>
+    <!-- Demo Settings start-->
+    <div class="setting closed">
+        <a href="javascript:;" class="setting-toggle fs-16"><i class="ti-palette text-muted"></i></a>
+        <h5 class="fs-16 mt-0 mb-20">Header Colors</h5>
+        <ul class="list-inline">
+            <li><a href="javascript:;" data-color="header-primary" class="mo-xs bg-primary inline-block img-circle header-color"></a></li>
+            <li><a href="javascript:;" data-color="header-green" class="mo-xs bg-success inline-block img-circle header-color"></a></li>
+            <li><a href="javascript:;" data-color="header-purple" class="mo-xs bg-purple inline-block img-circle header-color"></a></li>
+            <li><a href="javascript:;" data-color="header-yellow" class="mo-xs bg-warning inline-block img-circle header-color"></a></li>
+            <li><a href="javascript:;" data-color="header-red" class="mo-xs bg-danger inline-block img-circle header-color"></a></li>
+        </ul>
+        <h5 class="fs-16 mt-0 mb-20">Sidebar Style</h5>
+        <ul class="list-inline">
+            <li><a href="javascript:;" data-color="sidebar-dark" class="sidebar-color mo-xs bg-black inline-block img-circle"></a></li>
+            <li><a href="javascript:;" data-color="sidebar-light" class="sidebar-color mo-xs bg-default inline-block img-circle"></a></li>
+        </ul>
+        <form class="form-horizontal mb-20">
+            <div class="clearfix">
+                <p class="form-control-static pull-left">Background Image</p>
+                <div class="switch pull-right">
+                    <input id="sidebar-bg" type="checkbox" checked="">
+                    <label for="sidebar-bg" class="switch-success"></label>
+                </div>
+            </div>
+        </form>
+        <ul class="list-inline mb-0">
+            <li><a href="javascript:;" data-bg="10.jpg" class="inline-block sidebar-bg"><img src="~/Content/build/images/thumbnails/10.jpg" width="60" alt="" class="img-rounded"></a></li>
+            <li><a href="javascript:;" data-bg="11.jpg" class="inline-block sidebar-bg"><img src="~/Content/build/images/thumbnails/11.jpg" width="60" alt="" class="img-rounded"></a></li>
+            <li><a href="javascript:;" data-bg="12.jpg" class="inline-block sidebar-bg"><img src="~/Content/build/images/thumbnails/12.jpg" width="60" alt="" class="img-rounded"></a></li>
+        </ul>
+    </div>
+    <!-- Demo Settings end-->
+
+    <script type="text/javascript">
+        window.Fintrak = {};
+        (function (se) {
+            var rootPath;
+            se.rootPath = rootPath;
+        }(window.Fintrak));
+        Fintrak.rootPath = '@Url.Content("~")';
+    </script>
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+
+
+
+
+    <script src="~/app/assets/js/jquery/jquery-2.1.0.min.js"></script>
+    <!-- jQuery-->
+    @*<script type="text/javascript" src="~/Content/plugins/jquery/dist/jquery.min.js"></script>*@
+    <!-- Bootstrap JavaScript-->
+    <script type="text/javascript" src="~/Content/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/app/assets/js/jquery/jqueryform.js"></script>
+    @*<script src="~/app/assets/js/moment.js"></script>*@
+    <script src="~/app/libs/angular.js"></script>
+    <script src="~/app/libs/angular-resource.js"></script>
+    <script src="~/app/libs/angular-route.js"></script>
+    <script src="~/app/libs/angular-ui-router.js"></script>
+    <script src="~/app/assets/js/angular-sanitize.min.js"></script>
+    <script src="~/app/libs/ocLazyLoad.js"></script>
+    <script src="~/app/libs/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="~/app/assets/js/bootstrap/bootstrap.js"></script>
+    <script src="~/app/assets/js/plugins/modernizr/modernizr.js"></script>
+
+    <script src="~/app/assets/js/bootstrap-colorpicker-module.min.js"></script>
+    <script src="~/app/assets/js/excel/lodash.min.js"></script>
+    <script src="~/app/assets/js/excel/jszip.js"></script>
+    <script src="~/app/assets/js/excel/xlsx.js"></script>
+    <script src="~/app/assets/js/excel/xlsx-reader.js"></script>
+    <script src="~/app/assets/js/csv/json3.min.js"></script>
+    <script src="~/app/assets/js/csv/highlight.min.js"></script>
+    <script src="~/app/assets/js/csv/angular-highlightjs.min.js"></script>
+    <script src="~/app/assets/js/csv/angular-csv-import.js"></script>
+
+    <script src="~/app/assets/js/infinite-scroll/ng-scroll-repeat.min.js"></script>
+    <script src="~/app/assets/js/angular-moment-picker/angular-moment-picker.js"></script>
+    <script src="~/app/assets/js/export/ng-csv.min.js"></script>
+
+    <script src="~/app/assets/js/plugins/datatable/jquery.dataTables.min.js"></script>
+    <script src="~/app/assets/js/plugins/datatable/exts/dataTables.colVis.bootstrap.js"></script>
+    <script src="~/app/assets/js/plugins/datatable/exts/dataTables.colReorder.min.js"></script>
+    <script src="~/app/assets/js/plugins/datatable/exts/dataTables.tableTools.min.js"></script>
+    <script src="~/app/assets/js/plugins/datatable/dataTables.bootstrap.js"></script>
+
+    <script src="~/app/libs/spin.min.js"></script>
+    <script src="~/app/libs/angular-spinner.min.js"></script>
+    <script src="~/app/libs/angular-loading-spinner.js"></script>
+    <script src="~/app/libs/toastr.js"></script>
+    <script src="~/app/assets/js/treegrid/tree-grid-directive.js"></script>
+    <script src="~/app/assets/js/timer/ngIdleTimer.js"></script>
+
+    <script src="~/app/assets/js/export/FileSaver.min.js"></script>
+    <script src="~/app/assets/js/export/json-export-excel.min.js"></script>
+    <script src="~/app/assets/js/angular-datatable/angular-datatables.min.js"></script>
+
+    <script src="~/app/assets/js/ngTable/ng-table.js"></script>
+
+    <script src="~/app/assets/js/tableExport/tableExport.js"></script>
+    <script src="~/app/assets/js/tableExport/jquery.base64.js"></script>
+    <script src="~/app/assets/js/angular-moment-picker/angular-input-date.js"></script>
+
+
+
+    <!-- Malihu Scrollbar-->
+    <script type="text/javascript" src="~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- Animo.js-->
+    <script type="text/javascript" src="~/Content/plugins/animo.js/animo.min.js"></script>
+    <!-- Bootstrap Progressbar-->
+    <script type="text/javascript" src="~/Content/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- jQuery Easy Pie Chart-->
+    <script type="text/javascript" src="~/Content/plugins/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+    <!-- Toastr-->
+    <script type="text/javascript" src="~/Content/plugins/toastr/toastr.min.js"></script>
+    <!-- MomentJS-->
+    <script type="text/javascript" src="~/Content/plugins/moment/min/moment.min.js"></script>
+    <!-- jQuery BlockUI-->
+    <script type="text/javascript" src="~/Content/plugins/blockUI/jquery.blockUI.js"></script>
+    <!-- jQuery Counter Up-->
+    <script type="text/javascript" src="~/Content/plugins/jquery-waypoints/waypoints.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/Counter-Up/jquery.counterup.min.js"></script>
+    <!-- Jvector Map-->
+    <script type="text/javascript" src="~/Content/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/jvectormap/maps/jquery-jvectormap-world-mill.js"></script>
+    <!-- Flot Charts-->
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/flot/flot/master/excanvas.min.js"></script>
+    <![endif]-->
+    @*<script type="text/javascript" src="~/Content/plugins/flot/jquery.flot.js"></script>
+        <script type="text/javascript" src="~/Content/plugins/flot/jquery.flot.resize.js"></script>
+        <script type="text/javascript" src="~/Content/plugins/flot.curvedlines/curvedLines.js"></script>
+        <script type="text/javascript" src="~/Content/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>*@
+    <!-- Morris Chart-->
+    @*<script type="text/javascript" src="~/Content/plugins/raphael/raphael-min.js"></script>
+        <script type="text/javascript" src="~/Content/plugins/morris.js/morris.min.js"></script>*@
+    <!-- DataTables-->
+    <script type="text/javascript" src="~/Content/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/jszip/dist/jszip.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/pdfmake/build/pdfmake.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/pdfmake/build/vfs_fonts.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-colreorder/js/dataTables.colReorder.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <!-- jQuery UI-->
+    <script type="text/javascript" src="~/Content/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- FullCalendar-->
+    <script type="text/javascript" src="~/Content/plugins/fullcalendar/dist/fullcalendar.min.js"></script>
+    <!-- jQuery MiniColors-->
+    <script type="text/javascript" src="~/Content/plugins/jquery-minicolors/jquery.minicolors.min.js"></script>
+    <!-- Bootstrap Date Range Picker-->
+    <script type="text/javascript" src="~/Content/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- Custom JS-->
+    <script type="text/javascript" src="~/Content/build/js/first-layout/app.js"></script>
+    <script type="text/javascript" src="~/Content/build/js/first-layout/demo.js"></script>
+    <script type="text/javascript" src="~/Content/build/js/page-content/dashboard/index.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/PACE/pace.min.js"></script>
+    <script src="~/Content/build/js/owned-charts/highcharts-deminified.js"></script>
+
+
+    <script src="~/Content/vendor/raphael/raphael.min.js" type="text/javaScript"></script>
+    <script type="text/javaScript" src="~/Content/vendor/morrisjs/morris.min.js"></script>
+    <script src="~/Content/vendor/metisMenu/metisMenu.min.js" type="text/javaScript"></script>
+
+    <!-- 3D HighChart -->
+    @*<script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>*@
+
+
+    <script src="~/Content/highcharts/highcharts.js"></script>
+    <script src="~/Content/highcharts/highcharts-3d.js"></script>
+
+    <script src="~/Content/highcharts/exporting.js"></script>
+    <script src="~/Content/highcharts/export-data.js"></script>
+
+
+    <!-- Loading core javascript-->
+    <script src="~/app/main.js"></script>
+    <script src="~/app/angular-multi-select-master/doc/js/libs/isteven-multi-select.js"></script>
+
+    <script src="~/app/controllers/mprbalancesheet-list-controller.js"></script>
+    <script src="~/app/controllers/bsheet-list-controller.js"></script>
+    <script src="~/app/controllers/dia-bx-controller.js"></script>
+    <script src="~/app/controllers/modalctrl-controller.js"></script>
+    <script src="~/app/controllers/dashboard-controller.js"></script>
+
+
+    @*======================= jQuery for menu starts ====================================*@
+
+
+    <script>
+        //bar chart
+        $(function () {
+             $.ajax({
+                url: '@Url.Action("menusubmenu", "api/menu")',
+                type: "GET",
+                dataType: "json",
+
+                success: function (m) {
+                    //var w = "<option value=''>--- Select ---</option>";    //NOTE: value='' means you set default value to null. so if no item is selected, it returns null.
+                    $.each(mlist, function (i, m1) {
+                        //w += "<option value=" + w1.Value + ">" + w1.Text + "</option>";
+                        //m1.menulist;
+                        $("#cor").html(w);
+
+                        $.each(m1.reportpath, function (i, n1) {
+                            n1;
+                        });
+                    });
+                    $("#cor").html(w);
+                    $("#cor").html(w);
+
+                } //end of success
+            });  //end of 1st ajax
+        });
+
+        /*var chart1; // globally available: Ajax calls to server
+        $(function() {
+               chart1 = Highcharts.stockChart('container', {
+                 rangeSelector: {
+                    selected: 1
+                 },
+                 series: [{
+                    name: 'USD to EUR',
+                    data: usdtoeur // predefined JavaScript array
+                 }]
+              });
+           });*/
+
+
+    </script>
+
+
+
+    @*======================= jQuery for menu stops ======================================*@
+
+    @*=============================================================================*@
+
+    <script>
+        //bar chart
+        $(function () {
+            var myChart = Highcharts.chart('container_barchart', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Weekly Target Metricsss'
+
+                },
+                xAxis: {
+                    categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                    //extends the x-axis beyond the default
+                    tickwidth: 0,
+                    max: 5,
+                    labels: {
+                        formatter: function () {
+                            if (!isFinite(String(this.value))) {
+                                return this.value;
+                            }
+                        }
+                    }
+
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '% Daily Target'
+                    },
+                    label: {
+                        enabled: false
+                    },
+                    gridLineWidth: 20
+                },
+                //supply the data driven for the bar chart
+                series: [{
+                    name: 'Team A: LNC-TEM111',
+                    data: [1, 90, 4, 4, 80]
+                }, {
+                    name: 'Team B: LNC-TEM222',
+                    data: [5, 7, 3, 4, 80]
+                }, {
+                    name: 'Team C: LNC-TEM333',
+                    data: [15, 7, 20, 5, 30]
+                }, {
+                    name: 'Team D: LNC-TEM444',
+                    data: [8, 17, 30, 10, 70]
+                }, {
+                    name: 'Team E: LNC-TEM555',
+                    data: [35, 37, 3, 40, 4]
+                }]
+            });
+        });
+
+        /*var chart1; // globally available: Ajax calls to server
+        $(function() {
+               chart1 = Highcharts.stockChart('container', {
+                 rangeSelector: {
+                    selected: 1
+                 },
+                 series: [{
+                    name: 'USD to EUR',
+                    data: usdtoeur // predefined JavaScript array
+                 }]
+              });
+           });*/
+
+
+    </script>
+
+    @*implement pie chart*@
+    <script>
+        var colors = Highcharts.getOptions().colors,
+            categories = [
+                "Chrome",
+                "Firefox",
+                "Internet Explorer",
+                "Safari",
+                "Edge",
+                "Opera",
+                "Other"
+            ],
+            data = [
+                {
+                    "y": 62.74,
+                    "color": colors[2],
+                    "drilldown": {
+                        "name": "Chrome",
+                        "categories": [
+                            "Chrome v65.0",
+                            "Chrome v64.0",
+                            "Chrome v63.0",
+                            "Chrome v62.0",
+                            "Chrome v61.0",
+                            "Chrome v60.0",
+                            "Chrome v59.0",
+                            "Chrome v58.0",
+                            "Chrome v57.0",
+                            "Chrome v56.0",
+                            "Chrome v55.0",
+                            "Chrome v54.0",
+                            "Chrome v51.0",
+                            "Chrome v49.0",
+                            "Chrome v48.0",
+                            "Chrome v47.0",
+                            "Chrome v43.0",
+                            "Chrome v29.0"
+                        ],
+                        "data": [
+                            0.1,
+                            1.3,
+                            53.02,
+                            1.4,
+                            0.88,
+                            0.56,
+                            0.45,
+                            0.49,
+                            0.32,
+                            0.29,
+                            0.79,
+                            0.18,
+                            0.13,
+                            2.16,
+                            0.13,
+                            0.11,
+                            0.17,
+                            0.26
+                        ]
+                    }
+                },  //end of first data content in the array
+                {
+                    "y": 10.57,
+                    "color": colors[1],
+                    "drilldown": {
+                        "name": "Firefox",
+                        "categories": [
+                            "Firefox v58.0",
+                            "Firefox v57.0",
+                            "Firefox v56.0",
+                            "Firefox v55.0",
+                            "Firefox v54.0",
+                            "Firefox v52.0",
+                            "Firefox v51.0",
+                            "Firefox v50.0",
+                            "Firefox v48.0",
+                            "Firefox v47.0"
+                        ],
+                        "data": [
+                            1.02,
+                            7.36,
+                            0.35,
+                            0.11,
+                            0.1,
+                            0.95,
+                            0.15,
+                            0.1,
+                            0.31,
+                            0.12
+                        ]
+                    }
+                },  //end of second data content in the array
+                {
+                    "y": 7.23,
+                    "color": colors[0],
+                    "drilldown": {
+                        "name": "Internet Explorer",
+                        "categories": [
+                            "Internet Explorer v11.0",
+                            "Internet Explorer v10.0",
+                            "Internet Explorer v9.0",
+                            "Internet Explorer v8.0"
+                        ],
+                        "data": [
+                            6.2,
+                            0.29,
+                            0.27,
+                            0.47
+                        ]
+                    }
+                },      //end of third data content in the array
+
+                {
+                    "y": 5.58,
+                    "color": colors[3],
+                    "drilldown": {
+                        "name": "Safari",
+                        "categories": [
+                            "Safari v11.0",
+                            "Safari v10.1",
+                            "Safari v10.0",
+                            "Safari v9.1",
+                            "Safari v9.0",
+                            "Safari v5.1"
+                        ],
+                        "data": [
+                            3.39,
+                            0.96,
+                            0.36,
+                            0.54,
+                            0.13,
+                            0.2
+                        ]
+                    }
+                },  //end of fourth data content in the array
+                {
+                    "y": 4.02,
+                    "color": colors[5],
+                    "drilldown": {
+                        "name": "Edge",
+                        "categories": [
+                            "Edge v16",
+                            "Edge v15",
+                            "Edge v14",
+                            "Edge v13"
+                        ],
+                        "data": [
+                            2.6,
+                            0.92,
+                            0.4,
+                            0.1
+                        ]
+                    }
+                },  //end of fifth data content in the array
+                {
+                    "y": 1.92,
+                    "color": colors[4],
+                    "drilldown": {
+                        "name": "Opera",
+                        "categories": [
+                            "Opera v50.0",
+                            "Opera v49.0",
+                            "Opera v12.1"
+                        ],
+                        "data": [
+                            0.96,
+                            0.82,
+                            0.14
+                        ]
+                    }
+                },  //end of sixth data content in the array
+                {
+                    "y": 7.62,
+                    "color": colors[6],
+                    "drilldown": {
+                        "name": 'Other',
+                        "categories": [
+                            'Other'
+                        ],
+                        "data": [
+                            7.62
+                        ]
+                    }
+                }
+            ],  //end of seventh data content in the array
+            browserData = [],
+            versionsData = [],
+            i,
+            j,
+            dataLen = data.length,
+            drillDataLen,
+            brightness;
+
+
+        // Build the data arrays
+        for (i = 0; i < dataLen; i += 1) {
+
+            // add browser data
+            browserData.push({
+                name: categories[i],
+                y: data[i].y,
+                color: data[i].color
+            });
+
+            // add version data
+            drillDataLen = data[i].drilldown.data.length;
+            for (j = 0; j < drillDataLen; j += 1) {
+                brightness = 0.2 - (j / drillDataLen) / 5;
+                versionsData.push({
+                    name: data[i].drilldown.categories[j],
+                    y: data[i].drilldown.data[j],
+                    color: Highcharts.Color(data[i].color).brighten(brightness).get()
+                });
+            }
+        }   //end outer for loop
+
+        //Create the chart now: this chart function takes the div tag in your program,
+        // and the structure of the chart to use
+
+        Highcharts.chart('container-piechart', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Browser market share, June, 2018'
+            },
+            //subtitle: {
+            //    text: 'Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            //},
+            yAxis: {
+                title: {
+                    text: 'Total percent market share'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    shadow: false,
+                    center: ['50%', '50%']
+                }
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            series: [{
+                name: 'Browsers',
+                data: browserData,
+                size: '60%',
+                dataLabels: {
+                    formatter: function () {
+                        return this.y > 5 ? this.point.name : null;
+                    },
+                    color: '#ffffff',
+                    distance: -30
+                }
+            }, {
+                name: 'Versions',
+                data: versionsData,
+                size: '80%',
+                innerSize: '60%',
+                dataLabels: {
+                    formatter: function () {
+                        // display only if larger than 1
+                        return this.y > 1 ? '<b>' + this.point.name + ':</b> ' +
+                            this.y + '%' : null;
+                    }
+                },
+                id: 'versions'
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 400
+                    },
+                    chartOptions: {
+                        series: [{
+                            id: 'versions',
+                            dataLabels: {
+                                enabled: false
+                            }
+                        }]  //end series data
+                    }   //end series
+                }]  //end the rules
+            }
+        }   //end second parameter of the chart
+        );  //end chart function
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,882 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="fintrak" lang="en">
+<head>
+    @*<base href="/home/Index#/">*@
+    <base href="/home/Index#/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title Pi360 Reporting</title>
+
+    @*@Styles.Render("~/Content/css")*@
+
+
+    <!-- CSS -->
+
+    <link href="~/app/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+    <link href="~/app/assets/js/treegrid/treeGrid.css" rel="stylesheet" />
+    <link href="~/app/assets/js/angular-moment-picker/angular-moment-picker.css" rel="stylesheet" />
+    @*<link href="~/app/assets/js/angular-datatable/angular-datatables.min.css" rel="stylesheet" />*@
+    @*<link href="~/app/assets/js/ngTable/ng-table.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="~/app/assets/js/crdate/datePicker.css">
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/app/assets/ico/kingadmin-favicon144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/app/assets/ico/kingadmin-favicon114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/app/assets/ico/kingadmin-favicon72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="~/app/assets/ico/kingadmin-favicon57x57.png">
+    <link rel="shortcut icon" href="~/app/assets/ico/favicon.png">
+
+    <link href="~/app/angular-multi-select-master/doc/css/isteven-multi-select.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/plugins/bootstrap/dist/css/customcss.css" rel="stylesheet" />
+    <link href="~/app/assets/css/reportpagecontrolmargin.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- PACE-->
+    @*<link href="~/Content/plugins/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />*@
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/PACE/themes/blue/pace-theme-flash.css">
+
+
+    <!-- Fonts-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/themify-icons/themify-icons.css">
+    <!-- Malihu Scrollbar-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css">
+    <!-- Animo.js-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/animo.js/animate-animo.min.css">
+    <!-- Bootstrap Progressbar-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css">
+    <!-- Toastr-->
+    <!-- <link rel="stylesheet" type="text/css" href="~/Content/plugins/toastr/toastr.min.css"> -->
+    <!-- SpinKit-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/SpinKit/css/spinners/7-three-bounce.css">
+    <!-- Jvector Map-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/jvectormap/jquery-jvectormap-2.0.3.css">
+    <!-- Morris Chart-->
+    @*<link rel="stylesheet" type="text/css" href="~/Content/plugins/morris.js/morris.css">*@
+    <!-- DataTables-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/datatables.net-colreorder-bs/css/colReorder.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.min.css">
+    <!-- Weather Icons -->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/weather-icons/css/weather-icons-wind.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/weather-icons/css/weather-icons.min.css">
+    <!-- FullCalendar-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/fullcalendar/dist/fullcalendar.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/fullcalendar/dist/fullcalendar.print.css" media="print">
+    <!--jQuery MiniColors -->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/jquery-minicolors/jquery.minicolors.css">
+    <!-- Bootstrap Date Range Picker-->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- Primary Style -->
+    <link rel="stylesheet" type="text/css" href="~/Content/build/css/first-layout.css" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+        <![endif]-->
+    <!-- MetisMenu CSS -->
+    <link href="~/Content/vendor/metisMenu/metisMenu.min.css" type="text/css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Content/dist/css/sb-admin-2.css" type="text/css" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link href="~/Content/vendor/morrisjs/morris.css" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="~/Content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="~/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/bower_components/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/bower_components/dist/css/skins/_all-skins.min.css">
+    <link href="~/app/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="~/bower_components/morris.js/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="~/bower_components/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="~/bower_components/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link href="~/app/assets/css/customhighcharts.css" rel="stylesheet" type="text/css" />
+    <link href="~/app/assets/css/customLoadingAnimation.css" rel="stylesheet" type="text/css" />
+    <link href="~/app/assets/css/customLoadingAnimation_2.css" rel="stylesheet" type="text/css" />
+    <link href="~/app/assets/css/angucomplete-alt.css" rel="stylesheet" />
+
+
+
+    <!-- <base href="/Index#/"> -->
+
+</head>
+<body data-sidebar-color="sidebar-light" class="sidebar-light" ng-controller="AppController">
+    <!-- Header start-->
+    <header style="background-color: #33ccff;">
+        @*<div class="search-bar closed">
+                <form>
+                    <div class="input-group input-group-lg">
+                        <input type="text" placeholder="Search for..." class="form-control"><span class="input-group-btn">
+                            <button type="button" class="btn btn-default search-bar-toggle"><i class="ti-close"></i></button>
+                        </span>
+                    </div>
+                </form>
+            </div>*@
+
+        <a href="#" class="brand pull-left">
+            <img align="left" src="~/images/logo/logo_1.png" width="120" height="64" alt="">
+        </a>
+
+        <a href="javascript:;" role="button" class="hamburger-menu pull-left"><span></span></a>
+
+
+        <label ng-controller="MenusController2" style="padding-top:2%; font-family:'Times New Roman', Times, serif; font-size:small; color:white">
+            <!-- You are currently viewing report for: <span>{{miscodeGlobalData}}</span> -->
+            You are currently viewing report for: <span ng-bind="misnameGlobalData" />
+        </label>
+
+        @*<button id="logout" class="btn btn-info nav navbar-nav navbar-right">Log Out</button>*@
+
+
+        <ul class="notification-bar list-inline pull-right" ng-controller="MenusController2">
+
+            <li><a role="button" class="header-icon"><div title="click to change report level" ng-click="globalopencall()" class="glyphicon glyphicon-modal-window"> </div></a></li>
+
+            @*<li id="logout"><a class="header-icon" ><i class="ti-power-off"></i></a></li>*@
+
+            <li class="visible-xs"><a href="javascript:;" role="button" class="header-icon search-bar-toggle"><i class="ti-search"></i></a></li>
+            <li class="visible-lg"><a href="javascript:;" role="button" class="header-icon fullscreen-toggle"><i class="ti-fullscreen"></i></a></li>
+
+            @*<li><a href="javascript:;" role="button" class="right-sidebar-toggle bubble header-icon"><i class="ti-layout-sidebar-right"></i><span class="dot bg-danger"></span></a></li>*@
+            <li id="logout" class="logoutclass"><a role="button" class="header-icon" href="@Url.Action("logout", "Account")"><i class="ti-power-off"></i></a></li>
+            @*<li><a href="@Url.Action("logout", "Account")"><i class="fa fa-power-off"></i><span class="text">Logout</span></a></li>*@
+        </ul>
+        @*<button id="btn1000">button</button>*@
+    </header>
+    <!-- Header end-->
+
+
+
+
+
+    <div class="main-container">
+
+        @*<!--Marquess-->
+            <div class="col-md-10">
+
+                <h4 style="">
+                    <marquee behavior="scroll" scrollamount="10" loop="" bgcolor="#fff" onmouseover="this.stop()" onmouseout="this.start()">
+                        <!--#D3D3D3-->
+                        <img src="~/Content/images/MarqueeImages/banner-image.png" width="300" height="80" border="2" />
+                        <img src="~/Content/images/MarqueeImages/data_driven1.jpg" width="200" height="80" border="2" />
+                        <img src="~/Content/images/MarqueeImages/data_driven2.jpg" width="200" height="80" border="2" />
+                        <img src="~/Content/images/MarqueeImages/data_driven3.jpg" width="200" height="80" border="2" />
+                        <img src="~/Content/images/MarqueeImages/data_driven4.jpg" width="200" height="80" border="2" />
+                        <img src="~/Content/images/MarqueeImages/Dashboard_Platform_banner.png" width="724" height="80" border="2" />
+                    </marquee>
+                </h4>
+            </div>*@
+
+        <!-- Main Sidebar start-->
+        @*<aside data-mcs-theme="minimal-dark" style="background-image: url(../../Content/build/images/backgrounds/11.jpg); background-color:red;" class="main-sidebar closed mCustomScrollbar" id="dropd">*@
+        <aside data-mcs-theme="minimal-dark" style="background-image: url(../../Content/build/images/backgrounds/11.jpg); background-color:red;" class="main-sidebar closed mCustomScrollbar" id="dropd">
+
+            <div class="user" ng-controller="MenusController2">
+                @*<div id="esp-user-profile" data-percent="65" style="height: 130px; width: 130px; line-height: 100px; padding: 15px;" class="easy-pie-chart"><img src="~/Content/build/images/users/04.jpg" alt="" class="avatar img-circle"><span class="status bg-success"></span></div>*@
+                <div id="esp-user-profile" data-percent="65" style="height: 130px; width: 130px; line-height: 100px; padding: 15px;" class="easy-pie-chart"><img src="~/Images/passports/sf1.JPG" alt="" class="avatar img-circle"><span class="status bg-success"></span></div>
+                <h4 class="fs-16 text-muted mt-15 mb-5 fw-300">{{loggedinUserFullNameGlobal}}</h4>
+                @*<p class="fs-13 mb-0 text-muted">Role will be here</p>*@
+            </div>
+
+
+
+
+
+            <ul class="nav" id="side-menu"></ul>
+
+
+            <ul class="sidebar-menu">
+                <li class="treeview">
+                    <a href="/home/index#/landingpage">
+                        <span>Home</span>
+                    </a>
+                </li>
+            </ul>
+
+            @*<ul class="sidebar-menu">
+                    <li class="treeview">
+                        <a href="/usermanual/manual1.docx" download="umanual">
+                            <span>User Manual</span>
+
+                        </a>
+                    </li>
+                </ul>*@
+
+            <ul class="sidebar-menu" data-widget="tree" style="color:white">
+                <li class="treeview">
+                    <a href="home/index#">
+                        <i class="fa fa-share"></i> <span>User Manuals</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/usermanual/manual1.docx">MPR Report Manual</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="sidebar-menu" data-widget="tree" style="color:white">
+                <li class="treeview">
+                    <a href="http://10.40.10.218:2019">
+                        <i class="fa fa-share"></i> <span>Budget</span>
+                    </a>
+                </li>
+            </ul>
+
+            @*<ul class="sidebar-menu">
+                    <li class="treeview">
+                        <a href="/home/index#/landingpage">
+                            <span>Budget</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>*@
+
+            <ul class="sidebar-menu" data-widget="tree" style="color:red">
+                <li class="treeview">
+                    <a href="/home/index#">
+                        <i class="fa fa-share"></i> <span>Dashboards</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+
+                    <ul class="treeview-menu">
+                        @*<li><a href="home/index#/dashboarddeposit"> Deposits </a></li>*@
+                        @*<li><a href="home/index#/dashboardratios"> Ratios </a></li>*@
+                        @*<li><a href="home/index#/dashboardexpense:expenses"> Expense </a></li>*@
+                        <li><a ui-sref="dashboarddeposit({urldashboardparam:'deposits'})"> Deposits </a></li>
+                        <li><a ui-sref="dashboardratios({urldashboardparam:'ratios'})"> Ratios </a></li>
+                        <li><a ui-sref="dashboardexpense({urldashboardparam:'expenses'})"> Expenses </a></li>
+                        <li><a ui-sref="dashboardaccount({urldashboardparam:'accounts'})"> Accounts </a></li>
+                    </ul>
+
+                </li>
+            </ul>
+
+            @*<ul class="sidebar-menu" data-widget="tree" style="color:white">
+                    <li class="treeview">
+                        <a href="home/index#">
+                            <i class="fa fa-share"></i> <span>Analytics</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="http://10.40.16.218/reports/powerbi/MPR/phone_Deposit__income_accounts_Analytics4.3">Phone</a></li>
+                        </ul>
+                    </li>
+                </ul>*@
+
+            <ul class="sidebar-menu" data-widget="tree" style="color:white" ng-controller="MenusController2">
+                <li class="treeview">
+                    <a href="home/index#">
+                        <i class="fa fa-share"></i> <span>Analytics</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li ng-repeat="n in mobilityGlobalMenuList"><a href="{{n.UIsrefState}}">{{n.ReportTitle}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+
+
+            <div ng-controller="MenusController2">
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="treeview">
+                        <a href="home/index#">
+                            <i class="fa fa-share"></i> <span>MPR</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="treeview" ng-repeat="m in menus">
+                                <a href="home/index#">
+                                    <i class="fa fa-circle-o"></i> {{m.MenuList}}
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    @*<li ng-repeat="n in m.subobj"><a href="home/index#/report:{{n.ParameterKey}}" > {{n.ReportPAth}} </a></li>*@
+                                    @*<li ng-repeat="n in m.subobj"><a ui-sref="reportstate({ParameterKey:n.ParameterKey})"> {{n.ReportPAth}} </a></li>*@
+                                    <li ng-repeat="n in m.subobj"><a ui-sref="{{n.UIsrefState}}({ParameterKey:n.ParameterKey})"> {{n.ReportPAth}} </a></li>
+                                    @*<li ng-repeat="n in m.subobj"><a ui-sref="{{n.UIsrefState}}({ParameterKey:n.ParameterKey})" target="_blank"> {{n.ReportPAth}} </a></li>*@
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </aside>
+
+
+
+        @*<button type="button" id="b3" name="b3">button3</button>
+            <div id="test3" name="test3"></div>*@
+        <!-- Main Sidebar end-->
+        <!-- Right Sidebar start-->
+        <!-- RenderBody Starts -->
+        @*@Scripts.Render("~/bundles/jquery")
+            @RenderSection("scripts", required: false)
+            @Scripts.Render("~/bundles/jqueryval")*@
+
+        @RenderBody()
+
+        <!-- RenderBody Ends -->
+
+
+
+    </div>
+    <!-- Demo Settings start-->
+    <div class="setting closed">
+        <a href="javascript:;" class="setting-toggle fs-16"><i class="ti-palette text-muted"></i></a>
+        <!-- <h5 class="fs-16 mt-0 mb-20">Header Colors</h5> -->
+        <!-- <ul class="list-inline"> -->
+        <!-- <li><a href="javascript:;" data-color="header-primary" class="mo-xs bg-primary inline-block img-circle header-color"></a></li> -->
+        <!-- <li><a href="javascript:;" data-color="header-green" class="mo-xs bg-success inline-block img-circle header-color"></a></li> -->
+        <!-- <li><a href="javascript:;" data-color="header-purple" class="mo-xs bg-purple inline-block img-circle header-color"></a></li> -->
+        <!-- <li><a href="javascript:;" data-color="header-yellow" class="mo-xs bg-warning inline-block img-circle header-color"></a></li> -->
+        <!-- <li><a href="javascript:;" data-color="header-red" class="mo-xs bg-danger inline-block img-circle header-color"></a></li> -->
+        <!-- </ul> -->
+        <h5 class="fs-16 mt-0 mb-20">Sidebar Style</h5>
+        <ul class="list-inline">
+            <li><a href="javascript:;" data-color="sidebar-dark" class="sidebar-color mo-xs bg-black inline-block img-circle"></a></li>
+            @*<li><a href="javascript:;" data-color="sidebar-dark" class="sidebar-color mo-xs bg-black inline-block img-circle"></a></li>*@
+            <li><a href="javascript:;" data-color="sidebar-light" class="sidebar-color mo-xs bg-default inline-block img-circle"></a></li>
+        </ul>
+        @*<form class="form-horizontal mb-20">
+                <div class="clearfix">
+                    <p class="form-control-static pull-left">Background Image</p>
+                    <div class="switch pull-right">
+                        <input id="sidebar-bg" type="checkbox" checked="">
+                        <label for="sidebar-bg" class="switch-success"></label>
+                    </div>
+                </div>
+            </form>*@
+        @*<ul class="list-inline mb-0">
+                <li><a href="javascript:;" data-bg="10.jpg" class="inline-block sidebar-bg"><img src="~/Content/build/images/thumbnails/10.jpg" width="60" alt="" class="img-rounded"></a></li>
+                <li><a href="javascript:;" data-bg="11.jpg" class="inline-block sidebar-bg"><img src="~/Content/build/images/thumbnails/11.jpg" width="60" alt="" class="img-rounded"></a></li>
+                <li><a href="javascript:;" data-bg="12.jpg" class="inline-block sidebar-bg"><img src="~/Content/build/images/thumbnails/12.jpg" width="60" alt="" class="img-rounded"></a></li>
+            </ul>*@
+    </div>
+    <!-- Demo Settings end-->
+
+
+
+
+    <script type="text/javascript">
+        window.Fintrak = {};
+        (function (se) {
+            var rootPath;
+            se.rootPath = rootPath;
+        }(window.Fintrak));
+        Fintrak.rootPath = '@Url.Content("~")';
+    </script>
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+
+
+
+
+    <script src="~/app/assets/js/jquery/jquery-2.1.0.min.js"></script>
+    <!-- jQuery-->
+    @*<script type="text/javascript" src="~/Content/plugins/jquery/dist/jquery.min.js"></script>*@
+    <!-- Bootstrap JavaScript-->
+    <script type="text/javascript" src="~/Content/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/app/assets/js/jquery/jqueryform.js"></script>
+    @*<script src="~/app/assets/js/moment.js"></script>*@
+    <script src="~/app/libs/angular.js"></script>
+    <script src="~/app/libs/angular-resource.js"></script>
+    <script src="~/app/libs/angular-route.js"></script>
+    <script src="~/app/libs/angular-ui-router.js"></script>
+    <script src="~/app/assets/js/angular-sanitize.min.js"></script>
+    <script src="~/app/libs/ocLazyLoad.js"></script>
+    <script src="~/app/libs/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="~/app/assets/js/bootstrap/bootstrap.js"></script>
+    <script src="~/app/assets/js/plugins/modernizr/modernizr.js"></script>
+
+    <script src="~/app/assets/js/bootstrap-colorpicker-module.min.js"></script>
+    <script src="~/app/assets/js/excel/lodash.min.js"></script>
+    <script src="~/app/assets/js/excel/jszip.js"></script>
+    <script src="~/app/assets/js/excel/xlsx.js"></script>
+    <script src="~/app/assets/js/excel/xlsx-reader.js"></script>
+    <script src="~/app/assets/js/csv/json3.min.js"></script>
+    <script src="~/app/assets/js/csv/highlight.min.js"></script>
+    <script src="~/app/assets/js/csv/angular-highlightjs.min.js"></script>
+    <script src="~/app/assets/js/csv/angular-csv-import.js"></script>
+
+    <script src="~/app/assets/js/infinite-scroll/ng-scroll-repeat.min.js"></script>
+    <script src="~/app/assets/js/angular-moment-picker/angular-moment-picker.js"></script>
+    <script src="~/app/assets/js/export/ng-csv.min.js"></script>
+
+    <script src="~/app/assets/js/plugins/datatable/jquery.dataTables.min.js"></script>
+    <script src="~/app/assets/js/plugins/datatable/exts/dataTables.colVis.bootstrap.js"></script>
+    <script src="~/app/assets/js/plugins/datatable/exts/dataTables.colReorder.min.js"></script>
+    <script src="~/app/assets/js/plugins/datatable/exts/dataTables.tableTools.min.js"></script>
+    <script src="~/app/assets/js/plugins/datatable/dataTables.bootstrap.js"></script>
+
+    <script src="~/app/libs/spin.min.js"></script>
+    <script src="~/app/libs/angular-spinner.min.js"></script>
+    <script src="~/app/libs/angular-loading-spinner.js"></script>
+    <script src="~/app/libs/toastr.js"></script>
+    <script src="~/app/assets/js/treegrid/tree-grid-directive.js"></script>
+    <script src="~/app/assets/js/timer/ngIdleTimer.js"></script>
+
+    <script src="~/app/assets/js/export/FileSaver.min.js"></script>
+    <script src="~/app/assets/js/export/json-export-excel.min.js"></script>
+    <script src="~/app/assets/js/angular-datatable/angular-datatables.min.js"></script>
+
+    <script src="~/app/assets/js/ngTable/ng-table.js"></script>
+
+    <script src="~/app/assets/js/tableExport/tableExport.js"></script>
+    <script src="~/app/assets/js/tableExport/jquery.base64.js"></script>
+    <script src="~/app/assets/js/angular-moment-picker/angular-input-date.js"></script>
+
+
+
+    <!-- Malihu Scrollbar-->
+    <script type="text/javascript" src="~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- Animo.js-->
+    <script type="text/javascript" src="~/Content/plugins/animo.js/animo.min.js"></script>
+    <!-- Bootstrap Progressbar-->
+    <script type="text/javascript" src="~/Content/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- jQuery Easy Pie Chart-->
+    <script type="text/javascript" src="~/Content/plugins/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+    <!-- Toastr-->
+    @*<script type="text/javascript" src="~/Content/plugins/toastr/toastr.min.js"></script>*@
+    <!-- MomentJS-->
+    <script type="text/javascript" src="~/Content/plugins/moment/min/moment.min.js"></script>
+    <!-- jQuery BlockUI-->
+    <script type="text/javascript" src="~/Content/plugins/blockUI/jquery.blockUI.js"></script>
+    <!-- jQuery Counter Up-->
+    <script type="text/javascript" src="~/Content/plugins/jquery-waypoints/waypoints.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/Counter-Up/jquery.counterup.min.js"></script>
+    <!-- Jvector Map-->
+    <script type="text/javascript" src="~/Content/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/jvectormap/maps/jquery-jvectormap-world-mill.js"></script>
+    <!-- Flot Charts-->
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/flot/flot/master/excanvas.min.js"></script>
+    <![endif]-->
+    @*<script type="text/javascript" src="~/Content/plugins/flot/jquery.flot.js"></script>
+        <script type="text/javascript" src="~/Content/plugins/flot/jquery.flot.resize.js"></script>
+        <script type="text/javascript" src="~/Content/plugins/flot.curvedlines/curvedLines.js"></script>
+        <script type="text/javascript" src="~/Content/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>*@
+    <!-- Morris Chart-->
+    @*<script type="text/javascript" src="~/Content/plugins/raphael/raphael-min.js"></script>
+        <script type="text/javascript" src="~/Content/plugins/morris.js/morris.min.js"></script>*@
+    <!-- DataTables-->
+    <script type="text/javascript" src="~/Content/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/jszip/dist/jszip.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/pdfmake/build/pdfmake.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/pdfmake/build/vfs_fonts.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-colreorder/js/dataTables.colReorder.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <!-- jQuery UI-->
+    <script type="text/javascript" src="~/Content/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- FullCalendar-->
+    <script type="text/javascript" src="~/Content/plugins/fullcalendar/dist/fullcalendar.min.js"></script>
+    <!-- jQuery MiniColors-->
+    <script type="text/javascript" src="~/Content/plugins/jquery-minicolors/jquery.minicolors.min.js"></script>
+    <!-- Bootstrap Date Range Picker-->
+    <script type="text/javascript" src="~/Content/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- Custom JS-->
+    <script type="text/javascript" src="~/Content/build/js/first-layout/app.js"></script>
+    <script type="text/javascript" src="~/Content/build/js/first-layout/demo.js"></script>
+    <script type="text/javascript" src="~/Content/build/js/page-content/dashboard/index.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/PACE/pace.min.js"></script>
+    @*<script src="~/Content/build/js/owned-charts/highcharts-deminified.js"></script>*@
+
+
+    <script src="~/Content/vendor/raphael/raphael.min.js" type="text/javaScript"></script>
+    <script type="text/javaScript" src="~/Content/vendor/morrisjs/morris.min.js"></script>
+    <script src="~/Content/vendor/metisMenu/metisMenu.min.js" type="text/javaScript"></script>
+    <script src="~/Content/dist/js/sb-admin-2.js" type="text/javaScript"></script>
+    <script src="~/app/assets/js/angucomplete-alt-v3.0.0.min.js"></script>
+
+
+    <!-- <script src="~/bower_components/raphael/raphael.min.js"></script> -->
+    <!-- <script src="~/bower_components/morris.js/morris.min.js"></script> -->
+    <!-- <script src="~/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script> -->
+    <!-- Sparkline -->
+    <!-- <script src="~/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script> -->
+    <!-- jvectormap -->
+    <!-- <script src="~/bower_components/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script> -->
+    <!-- <script src="~/bower_components/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script> -->
+    <!-- jQuery Knob Chart -->
+    <!-- <script src="~/bower_components/jquery-knob/dist/jquery.knob.min.js"></script> -->
+    <!-- daterangepicker -->
+    <!-- <script src="~/bower_components/moment/min/moment.min.js"></script> -->
+    <!-- Bootstrap WYSIHTML5 -->
+    <!-- <script src="~/bower_components/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script> -->
+    <!-- Slimscroll -->
+    <!-- <script src="~/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>  -->
+    <!-- FastClick -->
+    <!-- <script src="~/bower_components/fastclick/lib/fastclick.js"></script>  -->
+    <!-- AdminLTE App -->
+    <script src="~/bower_components/dist/js/adminlte.min.js"></script>
+
+
+    <!-- 3D HighChart -->
+    @*<script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-3d.js"></script>*@
+
+    @*<script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>*@
+
+
+    @* ======================== This part is for DrillDown starts ================= *@
+
+    @*<script src="~/Content/highcharts/highcharts_forDrillDown.js"></script>*@
+    @*<script src="~/Content/highcharts/highcharts-3d.js"></script>*@
+    @*<script src="~/Content/highcharts/highcharts-more.js"></script
+
+        @*<script src="~/Content/highcharts/highcharts-3d.js"></script>*@
+    @*<script src="~/Content/highcharts/highcharts-more.js"></script>*@
+
+    <script src="~/Content/highcharts/highcharts.js"></script>
+    <script src="~/Content/highcharts/highcharts-3d.js"></script>
+
+    @*<script src="https://code.highcharts.com/modules/data.js"></script>
+        <script src="https://code.highcharts.com/modules/drilldown.js"></script>*@
+
+
+    @* ================== This part is for DrillDown ends ======================== *@
+
+
+
+    <!-- Loading core javascript-->
+    <script src="~/app/main.js"></script>
+    <script src="~/app/angular-multi-select-master/doc/js/libs/isteven-multi-select.js"></script>
+
+
+
+
+    @*<script src="~/app/controllers/mprbalancesheet-list-controller.js"></script>
+                <script src="~/app/controllers/bsheet-list-controller.js"></script>
+                <script src="~/app/controllers/dia-bx-controller.js"></script>
+            <script src="~/app/controllers/dashboard-controller.js"></script>
+        <script src="~/app/controllers/dashboard2-controller.js"></script>
+            <script src="~/app/controllers/ceo2dashboard-controller.js"></script>*@
+
+
+    <script src="~/app/controllers/menus-controller.js"></script>
+    <script src="~/app/controllers/modalctrl-controller.js"></script>
+    <script src="~/app/controllers/modalctrlWMB-controller.js"></script>
+    <script src="~/app/controllers/modalctrlABP-controller.js"></script>
+    <script src="~/app/controllers/modalctrlLBIC-controller.js"></script>
+
+    <script src="~/app/controllers/landingpage-controller.js"></script>
+    <script src="~/app/controllers/dashboarddeposit-controller.js"></script>
+    <script src="~/app/controllers/dashboardratios-controller.js"></script>
+    <script src="~/app/controllers/dashboardexpense-controller.js"></script>
+    <script src="~/app/controllers/dashboardaccount-controller.js"></script>
+    <script src="~/app/controllers/dashboardbrowser-controller.js"></script>
+    <script src="~/app/controllers/dashboardriskasset-controller.js"></script>
+    <script src="~/app/controllers/dashboardincome-controller.js"></script>
+    <script src="~/app/controllers/dashboardcustomercrm-controller.js"></script>
+
+    <script src="~/app/controllers/report001-controller.js"></script>
+    <script src="~/app/controllers/report002-controller.js"></script>
+    <script src="~/app/controllers/report003-controller.js"></script>
+    <script src="~/app/controllers/report004-controller.js"></script>
+    <script src="~/app/controllers/report005-controller.js"></script>
+    <script src="~/app/controllers/report006-controller.js"></script>
+    <script src="~/app/controllers/report007-controller.js"></script>
+    <script src="~/app/controllers/report008-controller.js"></script>
+    <script src="~/app/controllers/report009-controller.js"></script>
+    <script src="~/app/controllers/report010-controller.js"></script>
+    <script src="~/app/controllers/report011-controller.js"></script>
+    <script src="~/app/controllers/report012-controller.js"></script>
+    <script src="~/app/controllers/report014-controller.js"></script>
+    <script src="~/app/controllers/report015-controller.js"></script>
+    <script src="~/app/controllers/report016-controller.js"></script>
+    <script src="~/app/controllers/report017-controller.js"></script>
+    <script src="~/app/controllers/report018-controller.js"></script>
+    <script src="~/app/controllers/report019-controller.js"></script>
+    <script src="~/app/controllers/report020-controller.js"></script>
+    <script src="~/app/controllers/report021-controller.js"></script>
+    <script src="~/app/controllers/report022-controller.js"></script>
+    <script src="~/app/controllers/report023-controller.js"></script>
+    <script src="~/app/controllers/report024-controller.js"></script>
+    <script src="~/app/controllers/report025-controller.js"></script>
+    <script src="~/app/controllers/report026-controller.js"></script>
+    <script src="~/app/controllers/report027-controller.js"></script>
+    <script src="~/app/controllers/report028-controller.js"></script>
+    <script src="~/app/controllers/report029-controller.js"></script>
+    <script src="~/app/controllers/report030-controller.js"></script>
+    <script src="~/app/controllers/report031-controller.js"></script>
+    <script src="~/app/controllers/report032-controller.js"></script>
+    <script src="~/app/controllers/report033-controller.js"></script>
+    <script src="~/app/controllers/report034-controller.js"></script>
+    <script src="~/app/controllers/report035-controller.js"></script>
+    <script src="~/app/controllers/report036-controller.js"></script>
+    <script src="~/app/controllers/report101-controller.js"></script>
+    <script src="~/app/controllers/report102-controller.js"></script>
+    <script src="~/app/controllers/report103-controller.js"></script>
+    <script src="~/app/controllers/report104-controller.js"></script>
+    <script src="~/app/controllers/excelfiledownload-controller.js"></script>
+
+    <script src="~/app/controllers/sessionvariables-controller.js"></script>
+
+
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
+    <script src="~/app/controllers/carousel-controller.js"></script>
+
+    <script src="~/app/assets/js/jquery/jquery.marquee.js"></script>
+    <script src="~/app/assets/js/jquery/jquery.easing.min.js"></script>
+
+    <script src="~/app/services/sessiontimeout.js"></script>
+
+    @*======================= jQuery ====================================*@
+
+    @*<script>
+                var fe = function () {
+                    //window.location = "http://localhost:43056/account/login";
+                    //window.location = "http://localhost:43056/account/login";
+
+                        $.ajax({
+                                url: '@Url.Action("CustomSessionTimeOut", "Account")',
+                                type: "GET",
+                            dataType: "json",
+
+                            success: function () {
+                                window.location = "http://localhost:43056/account/login";
+                            }
+
+                            //success: function (result) {
+                            //    if (result.href === "1") {
+                            //        //window.location.ref = result.redirectUrl;
+                            //       //window.location = result.redirectUrl;
+                            //        window.location = "http://localhost:43056/account/login";
+                            //            }
+                            //    } //end of success
+                            });  //end of 1st ajax
+                    }
+        </script>*@
+
+
+    @*<script>
+        //setTimeout(document.location.reload(), 5000);
+            setTimeout(fe(), 10000);
+        </script>*@
+
+
+    @*<script>
+            //session end
+            var sessionTimeoutWarning = @Session.Timeout- 1;
+
+            var sTimeout = parseInt(sessionTimeoutWarning) * 60 * 1000;
+            setTimeout('SessionEnd()', sTimeout);
+
+            function SessionEnd() {
+                window.location = "/account/login";
+            }
+        </script>*@
+
+
+    @*<script>
+            var fe2 = function () {
+                $(".logoutclass").trigger('click');
+            }
+
+        </script>*@
+    @*<script>
+            setTimeout('fe2()', 60);
+
+            function fe2() {
+                window.location = "/account/login";
+            }
+        </script>*@
+    @*<script language="javascript">
+
+            setTimeout('fe2()', 10);
+
+            function fe2() {
+
+                  $.ajax({
+                                url: '@Url.Action("sessionTimeOut", "Home")',
+                                type: "Get",
+                                dataType: "json",
+
+                                success: function (result) {
+                                    if (result.v === "00") {
+                                       //window.location = result.redirectUrl;
+                                        window.location = "/account/login";
+                                        document.location.reload();
+                                            }
+                                    } //end of success
+                                });  //end of 1st ajax
+                //window.location = "/account/login";
+            };
+
+        </script>*@
+
+    @*<script src="~/app/assets/js/sessiontimeout.js" type="text/javaScript"></script>*@
+
+    @*<script>
+            var fe2 = function () {
+
+                $.ajax({
+                    url: '@Url.Action("sessionTimeOut", "Home")',
+                    type: "GET",
+                    dataType: "json",
+
+                    error: function (result) {
+                        //if (result.v === "ab") {
+                        //$("#lab").html("working");
+                        ////window.location = result.redirectUrl;
+                        window.location = "/account/login";
+                        ////window.location.href = result.redirectUrl;;
+                        //document.location.reload();
+                       //}
+                    } //end of success
+                });  //end of 1st ajax
+            };
+        </script>*@
+
+
+
+
+    <script>
+        (function () {
+
+            const idleDurationSecs = 1880;    // X number of seconds
+            const redirectUrl = '/account/login';  // Redirect idle users to this URL
+            let idleTimeout; // variable to hold the timeout, do not modify
+
+            const resetIdleTimeout = function () {
+
+                // Clears the existing timeout
+                if (idleTimeout) clearTimeout(idleTimeout);
+
+                // Set a new idle timeout to load the redirectUrl after idleDurationSecs
+                idleTimeout = setTimeout(() => location.href = redirectUrl, idleDurationSecs * 1000);
+            };
+
+            // Init on page load
+            resetIdleTimeout();
+
+            // Reset the idle timeout on any of the events listed below
+            ['click', 'touchstart', 'mousemove']
+                .forEach(evt => document.addEventListener(evt, resetIdleTimeout, false)
+                );
+
+        })();
+    </script>
+
+
+    @*<script>
+                //setTimeout('fe2()', 10);
+            $("#test").click(function () {
+                fe2();
+            });
+
+                var fe2 = function () {
+                        $.ajax({
+                            url: '@Url.Action("sessionTimeOut", "Home")',
+                            type: "GET",
+                            dataType: "json",
+
+                            success: function (result) {
+                                if (result.v === 00) {
+                                    //window.location = result.redirectUrl;
+                                    window.location = "/account/login";
+                                    //window.location.href = result.redirectUrl;;
+                                    //document.location.reload();
+                                }
+                            } //end of success
+                        });  //end of 1st ajax
+
+                    //var v = "00";
+                    //if (v === "00") {
+                    //    window.location = "/account/login";
+                    //}
+                    }
+        </script>*@
+
+
+    @*<script>
+            var v = 1;
+            setTimeout(fe(), 5000);
+
+            var fe = function () {
+                if (v = 1) {
+                    $.ajax({
+                        url: '@Url.Action("LogOut", "Account")',
+                        type: "POST",
+                        dataType: "json",
+
+                        success: function () {
+                            //window.location.href = "/account/login";
+                            window.location.href = result.redirectUrl;
+                            //window.location.replace = "/account/login";
+                        } //end of success
+                    });  //end of 1st ajax
+                    document.location.reload();
+                }
+            }
+        </script>*@
+
+
+    @*<script >
+            $('#btn1000').on('click', function () {
+
+                $.ajax({
+                    url: '@Url.Action("LogOut", "Account")',
+                    type: "POST",
+                    dataType: "json",
+
+                    success: function () {
+                        //window.location.href = "/account/login";
+                        window.location.href = result.redirectUrl;
+                        //window.location.replace = "/account/login";
+                    } //end of success
+                });  //end of 1st ajax
+
+                //$('#label1000').html('working');
+
+            }); //end of #logout
+        </script>*@
+
+
+    @*@section Scripts {
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
+            @Scripts.Render("~/bundles/jqueryval")
+        }*@
+
+
+</body>
+</html>

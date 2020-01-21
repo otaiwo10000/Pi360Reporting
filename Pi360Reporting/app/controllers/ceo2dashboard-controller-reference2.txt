@@ -1,0 +1,731 @@
+﻿
+
+(function () {
+    "use strict";
+    angular
+        .module("fintrak")
+        .controller("CEO2DashboardController",
+        ['$scope', '$state', 'viewModelHelper', '$modal', 'validator', 'Excel', '$timeout',
+            CEO2DashboardController]);
+
+    function CEO2DashboardController($scope, $state, viewModelHelper, $modal, $modalInstance, validator, Excel, $timeout) {
+        var vm = this;
+        vm.viewModelHelper = viewModelHelper;
+        vm.parentController = $scope.$parent;
+
+        vm.view = 'ceo2dashboard-view';
+        vm.viewName = 'Dashboard';
+
+        vm.viewModelHelper.modelIsValid = true;
+        vm.viewModelHelper.modelErrors = [];
+        vm.barchart = [];
+        vm.piechart = [];
+
+
+        var rootUrl = '';
+
+        vm.ceo2table1 = [
+            { y: '2014', a: 50, b: 90 },
+            { y: '2015', a: 65, b: 75 },
+            { y: '2016', a: 50, b: 50 },
+            //{ y: '2017', a: 75, b: 60 },
+            //{ y: '2018', a: 80, b: 65 },
+            //{ y: '2019', a: 90, b: 70 },
+            //{ y: '2020', a: 100, b: 75 },
+           // { y: '2021', a: 115, b: 75 },
+            { y: '2022', a: 120, b: 85 },
+            { y: '2023', a: 145, b: 85 },
+            { y: '2024', a: 160, b: 95 }
+        ];
+
+        //vm.ceo2table2 = [
+        //    { y: '2014', a: 50, b: 90},
+        //    { y: '2015', a: 65, b: 75},
+        //    { y: '2016', a: 50, b: 50},
+        //    //{ y: '2017', a: 75, b: 60},
+        //    //{ y: '2018', a: 80, b: 65},
+        //    //{ y: '2019', a: 90, b: 70},
+        //    { y: '2020', a: 100, b: 75},
+        //    { y: '2021', a: 115, b: 75},
+        //    { y: '2022', a: 120, b: 85},
+        //    { y: '2023', a: 145, b: 85},
+        //    { y: '2024', a: 160, b: 95}
+        //];
+
+        vm.ceo2table2 = [
+            { y: '2014', a: 50, b: 90, c: 10 },
+            { y: '2015', a: 65, b: 75, c: 90 },
+            { y: '2016', a: 50, b: 50, c: 50 },
+            //{ y: '2017', a: 75, b: 60, c: 40},
+            //{ y: '2018', a: 80, b: 65, c: 20},
+            //{ y: '2019', a: 90, b: 70, c: 50},
+            //{ y: '2020', a: 100, b: 75, c: 40 },
+           // { y: '2021', a: 115, b: 75, c: 60 },
+            { y: '2022', a: 120, b: 85, c: 70 },
+            { y: '2023', a: 145, b: 85, c: 20 },
+            { y: '2024', a: 160, b: 95, c: 90 }
+        ];
+
+
+        //vm.depositmix = [
+        //{ y: '2014', a: 50, b: 90},
+        //{ y: '2015', a: 65, b: 75},
+        //{ y: '2016', a: 50, b: 50},
+        ////{ y: '2017', a: 75, b: 60},
+        ////{ y: '2018', a: 80, b: 65},
+        ////{ y: '2019', a: 90, b: 70},
+        //{ y: '2020', a: 100, b: 75},
+        //{ y: '2021', a: 115, b: 75},
+        //{ y: '2022', a: 120, b: 85},
+        //{ y: '2023', a: 145, b: 85},
+        //{ y: '2024', a: 160, b: 95}
+        //];
+
+        //======= working info =====================
+        //vm.ceo2_2 = [{ name: 'Team A', data: [5, 3, 4], stack: 0 },
+        //    { name: 'Team B', data: [2, 9, 6], stack: 1 },
+        //    { name: 'Team C', data: [7, 5, 3], stack: 2 }];
+
+        //------- not working ------------
+        // vm.period = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+        vm.period = [];
+
+        vm.ceo2_2_raw = [{ name: 'Team A', data: [{ n: 5, period: 'Jan' }, { n: 3, period: 'Feb' }, { n: 4, period: 'Mar' }], stack: 0 },
+            { name: 'Team B', data: [{ n: 2, period: 'Jan' }, { n: 9, period: 'Mar' }, { n: 6, period: 'Mar' }], stack: 1 },
+            { name: 'Team C', data: [{ n: 7, period: 'Jan' }, { n: 5, period: 'Feb' }, { n: 3, period: 'Mar' }], stack: 2 }];
+
+        angular.forEach(vm.ceo2_2_raw, function (value, key) {
+            vm.nANDperiod = value.data;
+
+            angular.forEach(vm.nANDperiod, function (a, b) {
+                //vm.period.push({ period: a.period });
+                if (vm.period.indexOf(a.period) == -1) {  //get unique /distict values of a.period
+                    vm.period.push(a.period);
+                }
+            });
+        });
+
+        vm.ceo2_2 = [];
+        vm.ceo2_2b = [];
+        vm.number = [];
+        angular.forEach(vm.ceo2_2_raw, function (value, key) {
+            //vm.info = {name: value.name, data: value.data, stack: value.stack};
+            //name = []; stack = [];
+            angular.forEach(value.data, function (a, b) { vm.number.push(a.n); });
+
+            vm.ceo2_2 = { name: value.name, data: vm.number, stack: value.stack };
+            //vm.ceo2_2 = vm.ceo2_2 || [];
+            // vm.ceo2_2.push({name: value.name, data: value.data, stack: value.stack});
+            //vm.ceo2_2.prototype.push.apply(name, data, stack);
+            vm.ceo2_2b.push(vm.ceo2_2);
+            vm.number = [];
+        });
+
+
+
+        vm.init = false;
+        vm.showInstruction = false;
+        vm.instruction = '';
+
+        var initialize = function () {
+
+            if (vm.init === false) {
+
+                $scope.tasks = vm.tasks;
+
+            }
+        }
+
+        var InitialView = function () {
+            InitialGrid();
+        }
+
+
+        var totalAccountMixFunc = function () {
+            Highcharts.chart('totalaccountmix', {
+                chart: {
+                    type: 'column',
+                    //backgroundColor: 'dodgerblue',
+                    options2d: {
+                        enabled: true,
+                        alpha: 10,
+                        beta: 25,
+                        depth: 70
+                    }
+                },
+                title: {
+                    //text: 'Title: 3D chart with null values'
+                    text: 'Total Account Mix'
+                },
+                subtitle: {
+                    //text: 'Notice the difference between a 0 value and a null point'
+                    //text: 'Subtitle here if needed.'
+                },
+                plotOptions: {
+                    column: {
+                        depth: 25
+                    }
+                },
+                xAxis: {
+                    //categories: Highcharts.getOptions().lang.shortMonths,
+                    categories: ['ACTIVE ACCOUNTS', 'DORMANT ACCOUNTS', 'INACTIVE ACCOUNTS'],
+                    labels: {
+                        skew3d: true,
+                        style: {
+                            fontSize: '16px'
+                        }
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Amount'
+                    }
+                },
+                series: [{
+                    //name: 'Sales',
+                    data: [560720.000000000000, 356525.000000000000, 1659202.000000000000]
+                }]
+            });
+        };
+
+
+        var depositMixFunc = function () {
+            Highcharts.chart('depositmix', {
+                chart: {
+                    type: 'column',
+                    //backgroundColor: 'dodgerblue',
+                    options2d: {
+                        enabled: true,
+                        alpha: 10,
+                        beta: 25,
+                        depth: 70
+                    }
+                },
+                title: {
+                    //text: 'Title: 3D chart with null values'
+                    text: 'Deposit Mix'
+                },
+                subtitle: {
+                    //text: 'Notice the difference between a 0 value and a null point'
+                    //text: 'Subtitle here if needed.'
+                },
+                plotOptions: {
+                    column: {
+                        depth: 25
+                    }
+                },
+                xAxis: {
+                    //categories: Highcharts.getOptions().lang.shortMonths,
+                    categories: ['Current', 'Saving', 'Dom', 'Fixed'],
+                    labels: {
+                        skew3d: true,
+                        style: {
+                            fontSize: '16px'
+                        }
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Amount'
+                    }
+                },
+                series: [{
+                    //name: 'Sales',
+                    data: [15, 60, 35, 50]
+                }]
+            });
+        };
+
+
+        var revenueMixFunc = function () {
+            Highcharts.chart('revenuemix', {
+                //colors: ['LightGreen'],
+                chart: {
+                    type: 'column',
+                    //backgroundColor: 'dodgerblue',
+                    options2d: {
+                        enabled: true,
+                        alpha: 10,
+                        beta: 25,
+                        depth: 70
+                    }
+                },
+                title: {
+                    //text: 'Title: 3D chart with null values'
+                    text: 'Revenue Mix'
+                },
+                subtitle: {
+                    //text: 'Notice the difference between a 0 value and a null point'
+                    //text: 'Subtitle here if needed.'
+                },
+                plotOptions: {
+                    column: {
+                        depth: 25,
+                        pointWidth: 40
+                    }
+                },
+                xAxis: {
+                    //categories: Highcharts.getOptions().lang.shortMonths,
+                    categories: ['NRFF', 'Total Comm&Fees'],
+                    labels: {
+                        skew3d: true,
+                        style: {
+                            fontSize: '16px'
+                        }
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Amount'
+                    }
+                },
+                series: [{
+                    //name: 'Sales',
+                    data: [70, 60]
+                }]
+            });
+        };
+
+ //============================ Trend ========================================================================
+
+        var totalAccountTrendFunc = function () {
+            colors: ['LightBrown'],
+            Highcharts.chart('totalaccounttrend', {
+                chart: {
+                    type: 'column',
+                    //backgroundColor: 'dodgerblue',
+                    options2d: {
+                        enabled: true,
+                        alpha: 15,
+                        beta: 15,
+                        viewDistance: 25,
+                        depth: 40
+                    }
+                },
+
+                title: {
+                    //text: 'Total ..?, grouped by ? if grouped'
+                    text: 'Total Account Trend'
+                },
+
+                xAxis: {
+                    categories: ['January', 'February', 'March', 'April', 'May', 'June'],   //vm.period 
+                    //categories: vm.period,
+                    labels: {
+                        skew3d: true,
+                        style: {
+                            fontSize: '16px'
+                        }
+                    }
+                },
+
+                yAxis: {
+                    allowDecimals: false,
+                    min: 0,
+                    title: {
+                        text: 'Value',
+                        skew3d: true
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<b>{point.key}</b><br>',
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+                },
+
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        depth: 40
+                    }
+                },
+
+                // series: vm.ceo2_2b
+
+                series: [{
+                    name: 'Actual',
+                    data: [5, 3, 4, 7, 8, 1],
+                    stack: 0
+                }]
+
+                //series: [{
+                //    name: 'Actual',
+                //    data: [5, 3, 4, 7],
+                //    stack: 0
+                //},
+                //{
+                //    name: 'Budget',
+                //    data: [3, 0, 4, 4],
+                //    stack: 3
+                //}]
+            });
+        };
+
+        var depositTrendFunc = function () {
+            colors: ['LightBrown'],
+            Highcharts.chart('deposittrend', {
+                chart: {
+                    type: 'column',
+                    //backgroundColor: 'dodgerblue',
+                    options2d: {
+                        enabled: true,
+                        alpha: 15,
+                        beta: 15,
+                        viewDistance: 25,
+                        depth: 40
+                    }
+                },
+
+                title: {
+                    //text: 'Total ..?, grouped by ? if grouped'
+                    text: 'Deposit Trend'
+                },
+
+                xAxis: {
+                    categories: ['January', 'February', 'March', 'April'],   //vm.period 
+                    //categories: vm.period,
+                    labels: {
+                        skew3d: true,
+                        style: {
+                            fontSize: '16px'
+                        }
+                    }
+                },
+
+                yAxis: {
+                    allowDecimals: false,
+                    min: 0,
+                    title: {
+                        text: 'Value',
+                        skew3d: true
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<b>{point.key}</b><br>',
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+                },
+
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        depth: 40
+                    }
+                },
+
+                // series: vm.ceo2_2b
+
+
+                series: [{
+                    name: 'Actual',
+                    data: [5, 3, 4, 7],
+                    stack: 0
+                },
+                {
+                    name: 'Budget',
+                    data: [3, 0, 4, 4],
+                    stack: 3
+                }]
+            });
+        };
+
+
+        var revenueTrendFunc = function () {
+            colors: ['LightRed'],
+            Highcharts.chart('revenuetrend', {
+                chart: {
+                    type: 'column',
+                    //backgroundColor: 'dodgerblue',
+                    options2d: {
+                        enabled: true,
+                        alpha: 15,
+                        beta: 15,
+                        viewDistance: 25,
+                        depth: 40
+                    }
+                },
+
+                title: {
+                    //text: 'Total ..?, grouped by ? if grouped'
+                    text: 'Revenue Trend'
+                },
+
+                xAxis: {
+                    categories: ['January', 'February', 'March', 'April'],   //vm.period 
+                    //categories: vm.period,
+                    labels: {
+                        skew3d: true,
+                        style: {
+                            fontSize: '16px'
+                        }
+                    }
+                },
+
+                yAxis: {
+                    allowDecimals: false,
+                    min: 0,
+                    title: {
+                        text: 'Value',
+                        skew3d: true
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<b>{point.key}</b><br>',
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+                },
+
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        depth: 40
+                    }
+                },
+
+                // series: vm.ceo2_2b
+
+
+                series: [{
+                    name: 'Actual',
+                    data: [5, 3, 4, 7],
+                    stack: 0
+                },
+                {
+                    name: 'Budget',
+                    data: [3, 0, 4, 4],
+                    stack: 3
+                }]
+            });
+        };
+
+
+
+        var ceo2colbarChartFunc3D = function () {
+            Highcharts.chart('ceo2_1colbarchart', {
+                //Highcharts.chart('container', {
+                chart: {
+                    type: 'column',
+                    options2d: {
+                        enabled: true,
+                        alpha: 10,
+                        beta: 25,
+                        depth: 70
+                    }
+                },
+                title: {
+                    //text: 'Title: 3D chart with null values'
+                    text: 'CASA'
+                },
+                subtitle: {
+                    //text: 'Notice the difference between a 0 value and a null point'
+                    text: 'Subtitle here if needed.'
+                },
+                plotOptions: {
+                    column: {
+                        depth: 25
+                    }
+                },
+                xAxis: {
+                    categories: Highcharts.getOptions().lang.shortMonths,
+                    labels: {
+                        skew3d: true,
+                        style: {
+                            fontSize: '16px'
+                        }
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: null
+                    }
+                },
+                series: [{
+                    name: 'Sales',
+                    data: [2, 3, null, 4, 0, 5, 1, 4, 6, 3]
+                }]
+            });
+        };
+
+        var ceo2pieChartFunc3D = function () {
+            Highcharts.chart('ceo2_piechart', {
+                chart: {
+                    //renderTo: 'container',
+                    type: 'pie',
+                    options3d: {
+                        enabled: true,
+                        alpha: 45,
+                        beta: 0
+                    }
+                },
+                title: {
+                    // text: 'Browser market shares at a specific website, 2014'
+                    text: 'Ratio Analysis'
+                },
+                tooltip: {
+                    //format: '<b>{point.name}</b>: {point.y:.1f} Rs.',
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        depth: 35,
+                        dataLabels: {
+                            enabled: true,
+                            //formatter: function() {
+                            //    return Math.round(this.percentage*100)/100 + ' %';},
+                            //format: '{point.name}'
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Browser share',
+                    data: [
+                        ['Firefox', 45.0],
+                        ['IE', 26.8],
+                        {
+                            name: 'Chrome',
+                            y: 12.8,
+                            sliced: true,
+                            selected: true
+                        },
+                        ['Safari', 8.5],
+                        ['Opera', 6.2],
+                        ['Others', 0.7]
+                    ]
+                }]
+            });
+        };
+
+
+        var ceo22colbarChartFunc3D = function () {
+            //$('#container').highcharts({
+            Highcharts.chart('ceo2_2colbarchart', {
+                chart: {
+                    type: 'column',
+                    options3d: {
+                        enabled: true,
+                        alpha: 15,
+                        beta: 15,
+                        viewDistance: 25,
+                        depth: 40
+                    }
+                },
+
+                title: {
+                    //text: 'Total ..?, grouped by ? if grouped'
+                    text: 'CASA'
+                },
+
+                xAxis: {
+                    //categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],   //vm.period 
+                    categories: vm.period,
+                    labels: {
+                        skew3d: true,
+                        style: {
+                            fontSize: '16px'
+                        }
+                    }
+                },
+
+                yAxis: {
+                    allowDecimals: false,
+                    min: 0,
+                    title: {
+                        text: 'Number of ?',
+                        skew3d: true
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<b>{point.key}</b><br>',
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+                },
+
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        depth: 40
+                    }
+                },
+
+                series: vm.ceo2_2b
+
+
+                //series: [{
+                //    name: 'Team A',
+                //    data: [5, 3, 4, 7, 2],
+                //    stack: 0
+                //}, {
+                //    name: 'Team B',
+                //    data: [3, 4, 4, 2, 5],
+                //    stack: 1
+                //}, {
+                //    name: 'Team C',
+                //    data: [2, 5, 6, 2, 1],
+                //    stack: 2
+                //}, {
+                //    name: 'Team D',
+                //    data: [3, 0, 4, 4, 3],
+                //    stack: 3
+                //}]
+            });
+        };
+
+
+        var InitialGrid1 = function () {
+            setTimeout(function () {
+
+                // data export
+                if ($('#ceo2_1colbarchart_table').length > 0) {
+                    var exportTable = $('#ceo2_1colbarchart_table').DataTable({
+                        "lengthMenu": [[20, 50, 50, 100, -1], [20, 50, 50, 100, "All"]],
+                        "scrollY": 22,
+                        "scrollX": 50,
+                        sDom: "T<'clearfix'>" +
+                        "<'row'<'col-sm-6'l><'col-sm-6'f>r>" +
+                        "t" +
+                        "<'row'<'col-sm-6'i><'col-sm-6'p>>",
+                        "tableTools": {
+                            "sSwfPath": "app/assets/js/plugins/datatable/exts/swf/copy_csv_xls_pdf.swf"
+                        }
+                    });
+                }
+            }, 50);
+        }
+
+
+        vm.open = function () {
+            //var open = function () {
+            var modalInstance = $modal.open({
+                //templateUrl: 'modalctrl-view.html',
+                //templateUrl: '/app/assets/views/modalctrl-view.html',
+                backdrop: true,
+                templateUrl: rootUrl + 'app/views/modalctrl-view.html',
+                controller: 'ModalCtrl as vm',
+                windowClass: 'app-modal-window1'
+            })
+        };
+
+
+        //ceo2colbarChartFunc3D();
+        //InitialGrid1();
+        //ceo2pieChartFunc3D();
+        //ceo22colbarChartFunc3D();
+
+        totalAccountMixFunc();
+        depositMixFunc();
+        revenueMixFunc();
+
+        totalAccountTrendFunc();
+        depositTrendFunc();
+        revenueTrendFunc();
+        //initialize();
+
+
+
+    }
+}());

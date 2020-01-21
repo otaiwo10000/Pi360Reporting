@@ -1,0 +1,137 @@
+﻿@{
+    //ViewBag.Title = "Account Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+
+<body class="body-bg-full form-group col-xs-12">
+
+    <div class="col-sm-offset-4 col-sm-4 col-xs-12" style="font-family:'Times New Roman', Times, serif; color:white;">
+        <div class="container page-container" style="border-radius:20px; height:300px;">
+            <div class="page-content">
+                <div><span id="statusid" style="color:red;"></span></div>
+                <form method="get" class="form-horizontal formClass1">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="text" placeholder="Username" class="form-control" id="usernameid">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="password" placeholder="Password" class="form-control" id="passwordid">
+                        </div>
+                    </div>
+                    <br />
+                    <button type="button" class="btn-lg btn btn-primary btn-rounded btn-block loginClass" id="login">Sign in</button>
+                </form>
+                <hr>
+            </div>
+        </div>
+    </div>
+</body>
+
+<video autoplay muted loop id="myVideo" style=" position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index:-1">
+    <source src="/Images/others/Advert.mp4" type="video/mp4">
+</video>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    @* <script src="~/Scripts/jquery-2.1.4.min.js"></script>*@
+    @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> *@
+    @*<script src="http://malsup.github.com/jquery.form.js"></script>*@
+    @*<script src="~/Scripts/bootstrap.js"></script>*@
+    @*<script src="~/Scripts/mustache.js"></script>*@
+
+    <script>
+        $(function () {
+
+            var $username = $('#usernameid');
+            var $password = $('#passwordid');
+
+            $('body').keypress(function (e) {
+                if (event.keyCode === 13) { //for key up use 38
+                    $('#login').trigger('click');
+                }
+            });
+
+            //$('body').keypress(function (ev) {
+            //    if (ev.which === 13)
+            //        $('#login').click();
+            //});
+
+
+
+            $('#login').on('click', function () {
+
+                var data = {
+                    username: $username.val(),
+                    password: $password.val(),
+                };
+
+                $.ajax({
+                    url: '@Url.Action("Login", "Account")',
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    // contentType: 'application/json;',
+                    // THIS MUST BE DONE FOR FILE UPLOADING
+                    //contentType: false,
+                    //processData: false,
+
+                    success: function (result) {
+                        if (result.v === "success") {
+                            window.location.href = result.redirectUrl;
+                        }
+                        else if (result.v === "fail") {
+                            $('#statusid').text("Login Failed");
+                        }
+                        else if (result.v === "notOnPi360") {
+                            $('#statusid').text("User does not exist on Pi360 app");
+                        }
+                        else if (result.v === "notreportuser") {
+                            $('#statusid').text("The user is not a report user");
+                        }
+                        else if (result.v === "notusermis") {
+                            $('#statusid').text("The user is not mapped to UserMIS on Pi360 app");
+                        }
+                        else if (result.v === "NA") {
+                            $('#statusid').text("Something went wrong. Try again or contact system admin.");
+                        }
+                    },
+
+                    //error: function() {
+                    //    alert('error saving jQueryTest');
+                    //error: function (er)
+                    //    alert(er);
+                    //}
+                });  // POST ajax ends
+            });
+
+
+            //=================== Log out starts ======================================================
+
+            @*$('#logout').on('click', function () {
+
+                $.ajax({
+                    url: '@Url.Action("LogOut", "Account")',
+                    type: "GET",
+                    dataType: "json",
+
+                    //success: function () {
+
+                    //} //end of success
+                });  //end of 1st ajax
+
+            });*@
+
+            //=================== Log out ends ======================================================
+
+
+        });
+    </script>
+}
